@@ -1,2 +1,3 @@
-# Obsidian Entertainment - Vertical Slice Game
-Obsidian Entertainment's repository for a vertical slice of their latest upcoming game - *insert name here*
+# Vertical Slice Game - Character Animation Branch
+
+This is a branch of the unity project dedicated to isolated character animations and rigging, to then be pushed to the main branch as-needed.
