@@ -48,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Shoot();
         } 
+
+        if (Input.GetKeyDown(KeyCode.Escape)) // If the player presses the escape key, quit the game
+        {
+            Application.Quit();
+        }
     }
 
     void FixedUpdate()
