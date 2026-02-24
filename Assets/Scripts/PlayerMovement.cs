@@ -13,19 +13,18 @@ public class PlayerMovement : MonoBehaviour
     public float flipTime = 0.02f; // Time it takes to complete the flip animation
 
     private Vector2 movement;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    //Equipment Variables
+    [SerializeField] private GameObject projectilePrefab; // Prefab of the projectile to be fired
+    [SerializeField] private Transform firingPoint; // Point from which the projectile will be fired
+
+
 
     // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        
 
         if (movement.x > flipThreshold) // If the player is moving right, set isFlipped to false
         {
@@ -44,12 +43,20 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, 0f), Time.deltaTime / flipTime);
         }
+
+        if (Input.GetMouseButtonDown(0)) // If the player presses the fire button, instantiate a projectile at the firing point
+        {
+            Shoot();
+        } 
     }
 
     void FixedUpdate()
     {
-        Vector2 amnt = movement * moveSpeed * Time.deltaTime;
-        Debug.Log(amnt);
-        player.MovePosition(player.position + amnt);
+        player.MovePosition(player.position + movement * moveSpeed * Time.deltaTime);
+    }
+
+    private void Shoot()
+    {
+        Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
     }
 }
