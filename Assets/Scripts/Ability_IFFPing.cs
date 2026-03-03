@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Playables;
 using UnityEngine;
 
-public class MemChipAbilitySO : ScriptableObject
+[CreateAssetMenu(menuName = "MemChip Abilities/ MemChip Ability - IFF Ping")]
+public class Ability_IFFPing : MemChipAbilitySO
 {
-    public string abilityName;
-    [TextArea(3, 10)] public string abilityFlavText;
-    [TextArea(3, 10)] public string abilityDesc;
     // Start is called before the first frame update
     void Start()
     {

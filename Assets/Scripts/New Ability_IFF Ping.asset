@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8a5440727e9a4489aa391a32d4609d, type: 3}
-  m_Name: IFFPing
+  m_Script: {fileID: 11500000, guid: 7f2a9250910035949bb11dc9371e732f, type: 3}
+  m_Name: New Ability_IFF Ping
   m_EditorClassIdentifier: 
-  abilityName: IFF Ping
-  abilityFlavText: "\u201CThe Identification, Friend or Foe (IFF) system that is
-    standard across all mechas from 2nd Generation onwards.\u201D"
+  abilityName: 
+  abilityFlavText: 
   abilityDesc: 
