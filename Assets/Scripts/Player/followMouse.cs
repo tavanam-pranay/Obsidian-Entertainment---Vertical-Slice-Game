@@ -48,7 +48,7 @@ public class followMouse : MonoBehaviour
         }
 
         //When E is pressed, the object will lerp to the mouse position.
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) || Input.GetMouseButton(1))
         {
             Vector2 mousePos = Input.mousePosition;
             Vector2 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
