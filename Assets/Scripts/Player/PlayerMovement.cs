@@ -44,11 +44,6 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, 0f), Time.deltaTime / flipTime);
         }
 
-        if (Input.GetMouseButtonDown(0)) // If the player presses the fire button, instantiate a projectile at the firing point
-        {
-            Shoot();
-        } 
-
         if (Input.GetKeyDown(KeyCode.Escape)) // If the player presses the escape key, quit the game
         {
             Application.Quit();
@@ -60,8 +55,4 @@ public class PlayerMovement : MonoBehaviour
         player.MovePosition(player.position + movement * moveSpeed * Time.deltaTime);
     }
 
-    private void Shoot()
-    {
-        Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
-    }
 }
