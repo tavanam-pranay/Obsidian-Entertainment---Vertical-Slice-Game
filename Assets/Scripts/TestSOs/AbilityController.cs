@@ -21,6 +21,7 @@ public class AbilityController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Adds all the ExecuteAbility functions inside the Ability Scriptable Objects within the list into the delegate
         foreach (var ability in memoryChipAbilities)
         {
             abilitiesToExecute += ability.ExecuteAbility;
@@ -31,9 +32,9 @@ public class AbilityController : MonoBehaviour
     void Update()
     {
         if (cooldownTimer > 0) cooldownTimer -= Time.deltaTime; // Counts down the cooldown timer in real time
+
+        //Executes every Ability's ExecuteAbility function every frame
         else abilitiesToExecute.Invoke(this.gameObject, this);
-
-
 
         #region ABILITY - IFF PING-RELEVANT CODE
         float scroll = Input.GetAxis("Mouse ScrollWheel");
