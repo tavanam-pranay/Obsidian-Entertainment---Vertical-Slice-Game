@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class AbilityController : MonoBehaviour
+{
+    public List<MemChipAbilitySO> memoryChipAbilities;
+      
+    public delegate void abilitiesDelegate(GameObject player, AbilityController controller);
+    abilitiesDelegate abilitiesToExecute = null;
+
+    public float cooldownTimer;
+
+    [Header("Ability - IFF Ping: Parameters")]
+    [Range(1, 250)] public int freqMegahertz;
+    public int freqUpLimit = 250;
+    public int freqLowLimit = 1;
+    public TextMeshProUGUI freqMhzText;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        foreach (var ability in memoryChipAbilities)
+        {
+            abilitiesToExecute += ability.ExecuteAbility;
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (cooldownTimer > 0) cooldownTimer -= Time.deltaTime; // Counts down the cooldown timer in real time
+        else abilitiesToExecute.Invoke(this.gameObject, this);
+
+
+
+        #region ABILITY - IFF PING-RELEVANT CODE
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll != 0)
+        {
+            Debug.Log("Scroll Wheel used!");
+            if (scroll > 0)
+            {
+                if (freqMegahertz < freqUpLimit) freqMegahertz += 1; // INcrement current IFF frequency when scrolling down
+            }
+            else
+            {
+                if (freqMegahertz > freqLowLimit) freqMegahertz -= 1; // DEcrement current IFF frequency when scrolling down
+            }
+            freqMhzText.text = freqMegahertz.ToString() + " MHz"; // Convert new value to string in Megahertz units
+        }
+        #endregion
+
+        #region ABILITY - XXXXX-RELEVANT CODE 
+        #endregion
+    }
+}

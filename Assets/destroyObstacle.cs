@@ -11,7 +11,7 @@ public class destroyObstacle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Collided with: " + other.gameObject.name);
+        Debug.Log(this.gameObject.name + "collided with: " + other.gameObject.name);
         if (other.gameObject.CompareTag("projectile"))
         {
             health -= 1;

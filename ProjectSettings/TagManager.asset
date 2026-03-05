@@ -6,6 +6,8 @@ TagManager:
   tags:
   - projectile
   - metal
+  - Ping
+  - Enemy
   layers:
   - Default
   - TransparentFX
