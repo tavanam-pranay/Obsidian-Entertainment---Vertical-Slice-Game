@@ -15,7 +15,7 @@ public class AttachmentBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class AttachmentBehavior : MonoBehaviour
     {
         Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
     }
-
+    
     private void Magnet()
     {
         Vector2 beamSize = new Vector2(10f, 3f); // Size of the boxcast\
@@ -53,16 +53,16 @@ public class AttachmentBehavior : MonoBehaviour
             angle += 90f; // Rotate the boxcast 90 degrees to match the direction of the beam
         }
 
-        //TODO: Make the boxcast not centered on firingpoint. Currently casts backwards toward player for half its width.
+
         RaycastHit2D[] hit2Ds = Physics2D.BoxCastAll(firingPoint.position, beamSize, angle, directionOfBeam, magnetRange); // Raycast in that direction to see if it hits anything within 10 units
 
         foreach (RaycastHit2D hit in hit2Ds) // For each thing hit by the raycast
         {
             if (hit.collider.CompareTag("metal")) // If it has the tag "Metal", pull it toward the player.
             {
-
+               
                 Rigidbody2D metalRb = hit.collider.GetComponent<Rigidbody2D>(); // Get the rigidbody of the metal object
-
+                
                 if (metalRb == null)
                 {
                     Debug.LogError("An object tagged 'metal' doesn't have a rigidbody!");
@@ -79,3 +79,5 @@ public class AttachmentBehavior : MonoBehaviour
     }
 
 }
+
+
