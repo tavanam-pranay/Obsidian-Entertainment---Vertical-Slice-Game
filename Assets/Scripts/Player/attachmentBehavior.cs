@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttachmentBehavior : MonoBehaviour
 {
@@ -8,10 +10,12 @@ public class AttachmentBehavior : MonoBehaviour
     //Equipment Variables
     [SerializeField] private GameObject projectilePrefab; // Prefab of the projectile to be fired
     [SerializeField] private Transform firingPoint; // Point from which the projectile will be fired
+    
+    //TMP variable for editing text.
+    public TextMeshProUGUI currentAbility; // Text object to display current ability
 
     //Magnet Variables
     [SerializeField] private float magnetStrength = 5f; // Strength of the magnet pull
-    [SerializeField] private float magnetRange = 10f; // Range of the magnet pull
     [SerializeField] private float heldRange = 1f; // Range at which an item is considered "held".
     [SerializeField] private Collider2D beamCollider; // Collider used to detect magnetic objects
     public PlayerMovement playerRoot; // Used to tell if player is flipped, for beam direction
@@ -19,6 +23,7 @@ public class AttachmentBehavior : MonoBehaviour
     // List to track objects currently inside the beam
     private List<Rigidbody2D> objectsInBeam = new List<Rigidbody2D>();
     private ContactFilter2D contactFilter; // Empty contact filter for OverlapCollider
+
     void Start()
     {
         if (beamCollider == null)
@@ -39,15 +44,32 @@ public class AttachmentBehavior : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        switch (playerRoot.armIndex)
         {
-            //Magnet();
+            case 0:
+                // Basic grabber, no shooting
+                currentAbility.SetText("Grabber (unfinished)");
+                break;
+            case 1:
+                currentAbility.SetText("Cannon");
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Shoot();
+                }
+                break;
+            case 2:
+                currentAbility.SetText("Magnet");
+                if (Input.GetMouseButton(0))
+                {
+                    Magnet();
+                }
+                break;
+            default:
+                Debug.LogWarning("Invalid arm index: " + playerRoot.armIndex);
+                break;
         }
 
-        if (Input.GetMouseButton(0))
-        {
-            Magnet();
-        }
+        
     }
 
     private void Shoot()
@@ -66,8 +88,6 @@ public class AttachmentBehavior : MonoBehaviour
         {
             if (col.CompareTag("magnetic")){ // If object is magnetic
 
-                Debug.Log("magnetic object detected: " + col.gameObject.name);
-
                 Rigidbody2D metalRb = col.GetComponent<Rigidbody2D>();
 
                 if (metalRb != null)
@@ -82,6 +102,8 @@ public class AttachmentBehavior : MonoBehaviour
             }
         }
     }
+
+    
 }
 
 

@@ -11,7 +11,6 @@ public class Obstacle : MonoBehaviour
     public bool magnetic = false;
 
     private float opacity = 1.0f;
-    private bool isMoving = false;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
