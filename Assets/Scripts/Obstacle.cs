@@ -6,7 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     //When colliding with "projectile" tagged object, lower health by 1 and destroy the projectile
 
-    public int health = 3;
+    [SerializeField] private int health = 3;
     public bool magnetic = false;
     private float opacity = 1.0f;
 
@@ -24,13 +24,17 @@ public class Obstacle : MonoBehaviour
             }
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        if (magnetic)
+        {
+            gameObject.tag = "magnetic";
+        }
+        else {
 
+            gameObject.tag = "obstacle"; // [Change this tag if it's not an obstacle]
+        }
     }
-
     // Update is called once per frame
     void Update()
     {

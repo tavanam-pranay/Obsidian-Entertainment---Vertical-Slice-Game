@@ -8,6 +8,7 @@ TagManager:
   - metal
   - Ping
   - Enemy
+  - obstacle
   layers:
   - Default
   - TransparentFX
