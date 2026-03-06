@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2a9250910035949bb11dc9371e732f, type: 3}
   m_Name: Ability_IFF Ping
   m_EditorClassIdentifier: 
-  abilityName: IFF PIng
-  abilityFlavText: "\u201CThe Identification Friend or Foe (IFF) system that is standard
+  abilityName: Friend-or-Foe
+  abilityFlavText: "\u201CThe Identification Friend or Foe system that is standard
     across all mechas from 2nd Generation and onwards.\u201D"
-  abilityDesc: Allows Holger to send out a 'ping' towards other mechas. It's frequency
+  abilityDesc: Allows Holger to send out a 'ping' towards other mechas. Its frequency
     can be adjusted.
+  abilityIcon: {fileID: 0}
   utilityChipReq: 1
   mobilityChipReq: 0
   combatChipReq: 0
-  abilityKeybind: 101
+  abilityKeybind: 102
   cooldownTime: 5
   pingPrefab: {fileID: 9119957126732739927, guid: c610663ec38489c40b28b9abb303a6d0, type: 3}

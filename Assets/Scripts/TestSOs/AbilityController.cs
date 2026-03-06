@@ -18,29 +18,36 @@ public class AbilityController : MonoBehaviour
     public int freqLowLimit = 1;
     public TextMeshProUGUI freqMhzText;
 
+    [SerializeField] protected MemChipInventory memChipInventory;
+
     // Start is called before the first frame update
     void Start()
     {
-        //Adds all the ExecuteAbility functions inside the Ability Scriptable Objects within the list into the delegate
-        foreach (var ability in memoryChipAbilities)
-        {
-            abilitiesToExecute += ability.ExecuteAbility;
-        }
+        //Establish a link to the memory chip inventory and abilities
+        memChipInventory.abilityController = this;
+
+        //DEBUG ONLY: Adds all the ExecuteAbility functions inside the Ability Scriptable Objects within the list into the delegate
+        //foreach (var ability in memoryChipAbilities)
+        //{
+        //    abilitiesToExecute += ability.ExecuteAbility;
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cooldownTimer > 0) cooldownTimer -= Time.deltaTime; // Counts down the cooldown timer in real time
-
-        //Executes every Ability's ExecuteAbility function every frame
-        else abilitiesToExecute.Invoke(this.gameObject, this);
+        if (memoryChipAbilities.Count > 0)
+        {
+            if (cooldownTimer > 0) cooldownTimer -= Time.deltaTime; // Counts down the cooldown timer in real time
+                                                                    //Executes every Ability's ExecuteAbility function every frame
+            else abilitiesToExecute.Invoke(this.gameObject, this);
+        }
 
         #region ABILITY - IFF PING-RELEVANT CODE
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0)
         {
-            Debug.Log("Scroll Wheel used!");
+            //Debug.Log("Scroll Wheel used!");
             if (scroll > 0)
             {
                 if (freqMegahertz < freqUpLimit) freqMegahertz += 1; // INcrement current IFF frequency when scrolling down
@@ -55,5 +62,11 @@ public class AbilityController : MonoBehaviour
 
         #region ABILITY - XXXXX-RELEVANT CODE 
         #endregion
+    }
+
+    public void addAbility(MemChipAbilitySO ability)
+    {
+        memoryChipAbilities.Add(ability);
+        abilitiesToExecute += ability.ExecuteAbility;
     }
 }

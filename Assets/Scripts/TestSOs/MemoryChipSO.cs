@@ -12,5 +12,6 @@ public class MemoryChipSO : ScriptableObject
 {
     public ChipType chipType;
     public string chipName;
+    public Sprite chipIcon;
     [TextArea(3, 10)] public string chipDesc;
 }
