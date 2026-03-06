@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - projectile
-  - metal
   - Ping
   - Enemy
   - obstacle
+  - magnetic
   layers:
   - Default
   - TransparentFX

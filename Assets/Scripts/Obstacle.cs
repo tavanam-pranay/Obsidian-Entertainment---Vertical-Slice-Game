@@ -7,8 +7,11 @@ public class Obstacle : MonoBehaviour
     //When colliding with "projectile" tagged object, lower health by 1 and destroy the projectile
 
     [SerializeField] private int health = 3;
+    public bool isDestructible = true;
     public bool magnetic = false;
+
     private float opacity = 1.0f;
+    private bool isMoving = false;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -18,7 +21,7 @@ public class Obstacle : MonoBehaviour
             health -= 1;
             Debug.Log("Health: " + health);
             Destroy(other.gameObject);
-            if (health <= 0)
+            if (health <= 0 && isDestructible)
             {
                 Destroy(gameObject);
             }
@@ -32,17 +35,19 @@ public class Obstacle : MonoBehaviour
         }
         else {
 
-            gameObject.tag = "obstacle"; // [Change this tag if it's not an obstacle]
+            gameObject.tag = "obstacle"; // Defaults to obstacle if not magnetic
         }
     }
     // Update is called once per frame
     void Update()
     {
-        opacity = (float)health / 3.0f; // Assuming max health is 3
+        if (isDestructible)
+        {
+            opacity = (float)health / 3.0f; // Assuming max health is 3
 
-        Color color = GetComponent<Renderer>().material.color; //Get current color
-        color.a = opacity; //Set opacity
-        GetComponent<Renderer>().material.color = color; //Apply new color with updated opacity
-
+            Color color = GetComponent<Renderer>().material.color; //Get current color
+            color.a = opacity; //Set opacity
+            GetComponent<Renderer>().material.color = color; //Apply new color with updated opacity
+        }
     }
 }
