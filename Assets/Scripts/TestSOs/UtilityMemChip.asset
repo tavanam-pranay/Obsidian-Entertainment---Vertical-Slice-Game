@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chipType: 0
   chipName: Utility Memory Chip
-  chipFlavText: 
+  chipIcon: {fileID: 1042304251238489709, guid: 53acaa92ad01240429729e4d959aec1a, type: 3}
   chipDesc: 
