@@ -30,8 +30,8 @@ public class followMouse : MonoBehaviour
             return;
         }
 
-        restOffset = (Vector2)(transform.position - transform.parent.position); // Set the rest offset based on the initial position of the target relative to its parent
-        flippedOffset = new Vector2(-restOffset.x, restOffset.y); // Set the flipped offset to be the mirror of the rest offset on the x-axis
+        restOffset = (Vector2)(transform.position - transform.parent.position); // Sets the rest offset based on the initial position of the target relative to its parent
+        flippedOffset = new Vector2(-restOffset.x, restOffset.y); // Sets the flipped offset to be the mirror of the rest offset on the x-axis
         restPos = transform.position;
     }
 
@@ -47,13 +47,11 @@ public class followMouse : MonoBehaviour
             restPos = (Vector2)transform.parent.position + restOffset;
         }
 
-        //When E is pressed, the object will lerp to the mouse position.
+        //When E or RMB is pressed, the object will lerp to the mouse position.
         if (Input.GetKey(KeyCode.E) || Input.GetMouseButton(1))
         {
             Vector2 mousePos = Input.mousePosition;
             Vector2 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
-
-            
             Vector2 center = shoulder.position;
             Vector2 toTarget = targetPos - center; // Vector from shoulder to target position
 
