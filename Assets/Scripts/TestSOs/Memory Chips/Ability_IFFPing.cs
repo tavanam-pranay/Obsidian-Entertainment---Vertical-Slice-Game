@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-//using UnityEditor.Playables;
+#if UNITY_EDITOR
+using UnityEditor.Playables;
+#endif
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 

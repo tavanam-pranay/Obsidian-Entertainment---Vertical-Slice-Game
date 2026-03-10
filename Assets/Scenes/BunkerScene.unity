@@ -20106,7 +20106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 353827b34ce5be64e9f5d9817e177dac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -22405,6 +22405,44 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a1f09ffe317054db9ceaa9a23c52fc, type: 3}
+--- !u!114 &424396334710630192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1776310480516428050, guid: 82a1f09ffe317054db9ceaa9a23c52fc, type: 3}
+  m_PrefabInstance: {fileID: 424396334710630191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &424396334710630193 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 629351820534649381, guid: 82a1f09ffe317054db9ceaa9a23c52fc, type: 3}
+  m_PrefabInstance: {fileID: 424396334710630191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &424396334710630194 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 337354223912308011, guid: 82a1f09ffe317054db9ceaa9a23c52fc, type: 3}
+  m_PrefabInstance: {fileID: 424396334710630191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &424396334710630195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 320300921953961183, guid: 82a1f09ffe317054db9ceaa9a23c52fc, type: 3}
+  m_PrefabInstance: {fileID: 424396334710630191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &569652436877590976
 GameObject:
   m_ObjectHideFlags: 0
@@ -23497,7 +23535,7 @@ MonoBehaviour:
   selectedViewAbility: {fileID: 0}
   selectedArm: {fileID: 0}
   abilityController: {fileID: 0}
-  attachmentBehavior: {fileID: 0}
+  attachmentBehavior: {fileID: 1885207880}
   utilChipCountText: {fileID: 7145990564536590857}
   mobilChipCountText: {fileID: 136673346192672325}
   combatChipCountText: {fileID: 7021672897774238224}
@@ -23505,10 +23543,10 @@ MonoBehaviour:
   abilityIconText: {fileID: 1562891064966150849}
   abilityFlavText: {fileID: 5038032528162776341}
   abilityDescText: {fileID: 6474984232485842927}
-  costsList: {fileID: 0}
-  utilChipCost: {fileID: 0}
-  mobilChipCost: {fileID: 0}
-  combatChipCost: {fileID: 0}
+  costsList: {fileID: 424396334710630195}
+  utilChipCost: {fileID: 424396334710630194}
+  mobilChipCost: {fileID: 424396334710630193}
+  combatChipCost: {fileID: 424396334710630192}
   reqsCompleteText: {fileID: 933112243440851454}
   unlockButton: {fileID: 8424190723623340374}
 --- !u!114 &8424190723623340374 stripped
