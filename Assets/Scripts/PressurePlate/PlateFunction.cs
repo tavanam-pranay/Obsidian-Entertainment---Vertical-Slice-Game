@@ -6,6 +6,7 @@ public class PlateFunction : MonoBehaviour
 {
     public Animator plateAnim;
     public GameObject door;
+    public List<Collider2D> objectsOnTop = new List<Collider2D>();
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +22,34 @@ public class PlateFunction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        plateAnim.enabled = true;
-        doorOpen();
-        Debug.Log("plate pressed!");
+        if (!objectsOnTop.Contains(other))
+        {
+            objectsOnTop.Add(other);
+        }
+
+        //trigger the press with the first object on top
+        if (objectsOnTop.Count == 1) 
+        {
+            plateAnim.enabled = true;
+            doorOpen();
+            Debug.Log("plate pressed!");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        doorClose();
-        Debug.Log("plate released!");
+        if (objectsOnTop.Contains(other))
+        {
+            objectsOnTop.Remove(other);
+        }
+
+        //only release plate if there's nothing on top
+        if (objectsOnTop.Count == 0)
+        {
+            doorClose();
+            Debug.Log("plate released!");
+            //animate plate release
+        }
     }
 
     public void doorOpen()
