@@ -20,6 +20,12 @@ public class AttachmentBehavior : MonoBehaviour
     [SerializeField] private Collider2D beamCollider; // Collider used to detect magnetic objects
     public PlayerMovement playerRoot; // Used to tell if player is flipped, for beam direction
 
+    //Grabber Variables
+    [SerializeField] private float grabRange = 1f; // Range at which the grabber can grab objects
+    [SerializeField] private Vector2 grabOffset; // Offset from the firingpoint where grabbed objects will be held
+    public bool isGrabbing = false; // Whether the grabber is currently grabbing an object
+    private Rigidbody2D grabbedObject = null; // Reference to the currently grabbed object
+
     // List to track objects currently inside the beam
     private List<Rigidbody2D> objectsInBeam = new List<Rigidbody2D>();
     private ContactFilter2D contactFilter; // Empty contact filter for OverlapCollider
@@ -39,7 +45,6 @@ public class AttachmentBehavior : MonoBehaviour
         contactFilter = new ContactFilter2D();// Initialize contact filter
         contactFilter.useTriggers = true; // We want to detect trigger colliders
         contactFilter.useLayerMask = false; 
-
     }
 
     void Update()
@@ -48,7 +53,17 @@ public class AttachmentBehavior : MonoBehaviour
         {
             case 0:
                 // Basic grabber, no shooting
-                currentAbility.SetText("Grabber (unfinished)");
+                currentAbility.SetText("Grabber");
+
+                if (Input.GetMouseButtonDown(0) && !isGrabbing)
+                {
+                    GrabberGrab();
+                }
+                else if (Input.GetMouseButtonDown(0) && isGrabbing)
+                {
+                    GrabberRelease();
+                }
+
                 break;
             case 1:
                 currentAbility.SetText("Cannon");
@@ -69,7 +84,21 @@ public class AttachmentBehavior : MonoBehaviour
                 break;
         }
 
-        
+        if (isGrabbing && grabbedObject != null) // If we're currently grabbing an object, we need to keep it at the grabbed position
+        {
+            Vector2 directionToPlayer = (Vector2)firingPoint.position - grabbedObject.position;
+            grabbedObject.MovePosition(firingPoint.position + (Vector3)grabOffset);
+
+            Collider2D grabbedCollider = grabbedObject.GetComponent<Collider2D>();
+
+            if (grabbedCollider != null)
+            {
+                    Physics2D.IgnoreCollision(grabbedCollider, playerRoot.GetComponent<Collider2D>(), true);//Exclude the grabbed object from the player's collider to prevent physics issues
+            }
+
+        }
+
+
     }
 
     private void Shoot()
@@ -79,10 +108,10 @@ public class AttachmentBehavior : MonoBehaviour
 
     private void Magnet()
     {
-        // Clean up any destroyed objects from the list
-        objectsInBeam.RemoveAll(rb => rb == null);
-        List<Collider2D> collidersInBeam = new List<Collider2D>();
-        beamCollider.OverlapCollider(contactFilter, collidersInBeam);
+        
+        objectsInBeam.RemoveAll(rb => rb == null);// Clean up any destroyed objects from the list
+        List<Collider2D> collidersInBeam = new List<Collider2D>(); //Make a new list to store the colliders currently in the beam
+        beamCollider.OverlapCollider(contactFilter, collidersInBeam); // Get all colliders currently in the beam
 
         foreach (Collider2D col in collidersInBeam)
         {
@@ -103,7 +132,52 @@ public class AttachmentBehavior : MonoBehaviour
         }
     }
 
-    
+    private void GrabberGrab()
+    {
+        List<Collider2D> collidersInBeam = new List<Collider2D>(); //Make a new list to store the colliders currently in the beam
+        beamCollider.OverlapCollider(contactFilter, collidersInBeam); // Get all colliders currently in the beam
+
+        foreach (Collider2D col in collidersInBeam)
+        {
+            
+            if (Vector2.Distance(firingPoint.position, col.transform.position) > grabRange)//Check if in range
+            {
+                continue; // Skip this object if it's out of range
+            }
+
+            if (col.GetComponent<GrabbableTag>() != null && !isGrabbing) // If object is grabbable and we're not already grabbing something
+            { 
+                grabbedObject = col.GetComponent<Rigidbody2D>(); 
+
+                if (grabbedObject != null) // If object is grabbable
+                {
+                    Vector2 directionToPlayer = (Vector2)firingPoint.position - grabbedObject.position;
+
+                    if (directionToPlayer.magnitude <= grabRange)
+                    {
+                        // Move the object to the grab offset position
+                        grabbedObject.MovePosition(firingPoint.position + (Vector3)grabOffset);
+                        isGrabbing = true;
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Object with Grabbable does not have a Rigidbody2D: " + col.gameObject.name);
+                }
+            }
+        }
+    }
+
+    private void GrabberRelease()
+    {
+        if (grabbedObject != null)
+        {
+            grabbedObject = null; // Release the object
+            isGrabbing = false;
+        }
+    }
+
+
 }
 
 
