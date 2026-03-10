@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isFlipped = false;
     public float flipThreshold = 0.1f; // TODO: Actually implement this. Threshold for determining when to flip the player based on movement direction
     public int armIndex = 0; //Index of the current arm, used for which effect. 0 (default) is the basic grabber.
+    [SerializeField] private GameObject pauseScriptParent; // Reference to the pause menu script, used to check if the game is paused before allowing movement and flipping
 
 
     [Range(0.01f, 0.1f)]
@@ -21,8 +22,6 @@ public class PlayerMovement : MonoBehaviour
     //Script References
     private AttachmentBehavior attachmentBehavior;
     private AbilityController abilityController;
-
-
 
     void Start()
     {
@@ -35,8 +34,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        
-        
 
         if (canFlip)
         {
@@ -66,7 +63,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape)) // If the player presses the escape key, quit the game
         {
-            Application.Quit();
+            pauseMenu pauseMenuScript = pauseScriptParent.GetComponent<pauseMenu>();
+
+            pauseMenuScript.openPauseMenu();
+
         }
     }
 
