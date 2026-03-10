@@ -31,6 +31,15 @@ public class MemChipInventory : MonoBehaviour
 
     private void Start()
     {
+        chipCount();
+    }
+
+    public void chipCount()
+    {
+        utilChipCount = 0;
+        mobilChipCount = 0;
+        combatChipCount = 0;
+
         foreach (MemoryChipSO memChip in memChipList)
         {
             switch (memChip.chipType)
@@ -99,6 +108,13 @@ public class MemChipInventory : MonoBehaviour
         abilityController.addAbility(selectedViewAbility);
         selectedViewAbility = null;
         unlockButton.interactable = false;
+        OnChange();
+    }
+
+    public void addChip(MemoryChipSO chip)
+    {
+        memChipList.Add(chip);
+        chipCount();
         OnChange();
     }
 }
