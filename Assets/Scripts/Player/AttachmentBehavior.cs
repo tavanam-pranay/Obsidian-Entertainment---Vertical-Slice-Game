@@ -31,9 +31,9 @@ public class AttachmentBehavior : MonoBehaviour
     private ContactFilter2D contactFilter; // Empty contact filter for OverlapCollider
 
     // List of bools to recognize which arms are available to the player; add bools as more arms are added
-    private bool hasGrabber;
-    private bool hasCannon;
-    private bool hasMagnet;
+    public bool hasGrabber;
+    public bool hasCannon;
+    public bool hasMagnet;
 
     void Start()
     {

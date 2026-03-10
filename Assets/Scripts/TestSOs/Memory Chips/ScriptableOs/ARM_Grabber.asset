@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b57c0ae67c21940b021be53052e565, type: 3}
   m_Name: ARM_Grabber
   m_EditorClassIdentifier: 
-  armName: 
+  armName: Grabby hands
   armFlavText: 
   armDesc: 
   armIcon: {fileID: 0}
-  utilityChipReq: 0
+  utilityChipReq: 1
   mobilityChipReq: 0
   combatChipReq: 0
   armIndexForPlayer: 0
