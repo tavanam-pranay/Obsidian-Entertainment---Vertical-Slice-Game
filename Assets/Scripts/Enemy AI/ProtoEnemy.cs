@@ -2,12 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyStates{
-    Ignorant,
-    Scanning,
-    Alert,
-    Hostile
-}
+
 public class ProtoEnemy : MonoBehaviour
 {
     [Range(1, 250)] public int enemyFreq;

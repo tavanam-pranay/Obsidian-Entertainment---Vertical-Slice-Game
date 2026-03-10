@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2264756607867843369}
   - component: {fileID: 993202565455492465}
   - component: {fileID: 8663536676439921569}
-  - component: {fileID: 8702958553542552677}
+  - component: {fileID: -7391749664148585848}
   m_Layer: 0
   m_Name: Pseudo-Enemy
   m_TagString: Enemy
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8702958553542552677
+--- !u!114 &-7391749664148585848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +130,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8554637115127031229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2d45dfce4b9c5f4b9537a263bc20d17, type: 3}
+  m_Script: {fileID: 11500000, guid: 2eb13596b3527534b818b8a9a7018fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyFreq: 122
+  enemyFreq: 0
   currentState: 1
+  isInvincible: 0
+  enemyHealth: 0
+  moveSpeed: 0
+  detectionRange: 0
+  hostileRange: 0
+  attackSpeed: 0
+  attackDamage: 0
