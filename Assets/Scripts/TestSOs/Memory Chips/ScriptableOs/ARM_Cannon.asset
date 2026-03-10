@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b57c0ae67c21940b021be53052e565, type: 3}
   m_Name: ARM_Cannon
   m_EditorClassIdentifier: 
-  armName: MASCHINENGEWEHR
-  armFlavText: 
+  armName: Kanonen-Strauss
+  armFlavText: '"A field mod of a mech-arm fitted with a 25 mm chain gun, nicknamed
+    for its ostrich-like mount."'
   armDesc: 
   armIcon: {fileID: 0}
   utilityChipReq: 1

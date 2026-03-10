@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b57c0ae67c21940b021be53052e565, type: 3}
   m_Name: ARM_Grabber
   m_EditorClassIdentifier: 
-  armName: Grabby hands
-  armFlavText: 
-  armDesc: 
+  armName: H-Class Mech-Claw
+  armFlavText: The standard large mechanical claw equipped on all H-class G.E.R.s.
+  armDesc: Allows Holger to interact with and lift objects around it.
   armIcon: {fileID: 0}
   utilityChipReq: 1
   mobilityChipReq: 0
