@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Playables;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 
