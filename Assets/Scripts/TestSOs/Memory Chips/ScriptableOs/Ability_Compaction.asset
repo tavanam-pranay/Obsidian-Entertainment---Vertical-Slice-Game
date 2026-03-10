@@ -19,7 +19,7 @@ MonoBehaviour:
     cost of its movement.
   abilityIcon: {fileID: 0}
   utilityChipReq: 1
-  mobilityChipReq: 0
+  mobilityChipReq: 1
   combatChipReq: 0
   abilityKeybind: 99
   cooldownTime: 2

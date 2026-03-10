@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b57c0ae67c21940b021be53052e565, type: 3}
   m_Name: ARM_Magnet
   m_EditorClassIdentifier: 
-  armName: 
-  armFlavText: 
-  armDesc: 
+  armName: Mark.II Magnetizer
+  armFlavText: A Mech-Claw mount for a powerful magnet, typically used for demolitions
+    or iron sieving.
+  armDesc: '"The junior engineers have nicknamed it the "North Pole", to the chagrin
+    of some senior members."'
   armIcon: {fileID: 0}
-  utilityChipReq: 0
+  utilityChipReq: 2
   mobilityChipReq: 0
   combatChipReq: 0
   armIndexForPlayer: 2
