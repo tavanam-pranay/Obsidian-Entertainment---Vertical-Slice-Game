@@ -69,4 +69,6 @@ public class AbilityController : MonoBehaviour
         memoryChipAbilities.Add(ability);
         abilitiesToExecute += ability.ExecuteAbility;
     }
+
+    
 }
