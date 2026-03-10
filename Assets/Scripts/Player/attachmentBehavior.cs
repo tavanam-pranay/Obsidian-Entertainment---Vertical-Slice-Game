@@ -30,6 +30,11 @@ public class AttachmentBehavior : MonoBehaviour
     private List<Rigidbody2D> objectsInBeam = new List<Rigidbody2D>();
     private ContactFilter2D contactFilter; // Empty contact filter for OverlapCollider
 
+    // List of bools to recognize which arms are available to the player; add bools as more arms are added
+    private bool hasGrabber;
+    private bool hasCannon;
+    private bool hasMagnet;
+
     void Start()
     {
         if (beamCollider == null)
@@ -53,28 +58,33 @@ public class AttachmentBehavior : MonoBehaviour
         {
             case 0:
                 // Basic grabber, no shooting
-                currentAbility.SetText("Grabber");
+                if(hasGrabber) currentAbility.SetText("Grabber");
+                else currentAbility.SetText("(Arm Unavailable)");
 
-                if (Input.GetMouseButtonDown(0) && !isGrabbing)
+                if (Input.GetMouseButtonDown(0) && !isGrabbing && hasGrabber)
                 {
                     GrabberGrab();
                 }
-                else if (Input.GetMouseButtonDown(0) && isGrabbing)
+                else if (Input.GetMouseButtonDown(0) && isGrabbing && hasGrabber)
                 {
                     GrabberRelease();
                 }
 
                 break;
             case 1:
-                currentAbility.SetText("Cannon");
-                if (Input.GetMouseButtonDown(0))
+                if (hasCannon) currentAbility.SetText("Cannon");
+                else currentAbility.SetText("(Arm Unavailable)");
+
+                if (Input.GetMouseButtonDown(0) && hasCannon)
                 {
                     Shoot();
                 }
                 break;
             case 2:
-                currentAbility.SetText("Magnet");
-                if (Input.GetMouseButton(0))
+                if (hasMagnet) currentAbility.SetText("Magnet");
+                else currentAbility.SetText("(Arm Unavailable)");
+
+                if (Input.GetMouseButton(0) && hasMagnet)
                 {
                     Magnet();
                 }
@@ -178,6 +188,20 @@ public class AttachmentBehavior : MonoBehaviour
     }
 
 
+
+    public void addArm(ArmSO arm)
+    {
+        switch (arm.armIndexForPlayer)
+        {
+            case 0:
+                hasGrabber = true; break;
+            case 1:
+                hasCannon = true; break;
+            case 2:
+                hasMagnet = true; break;
+
+        }
+    }
 }
 
 
