@@ -5,7 +5,7 @@ using UnityEngine;
 public class BasicTurret : MonoBehaviour
 {
     
-    [SerializeField] private float shootCooldown = 10f; // Time between shots
+    [SerializeField] [Range(1, 7)] private float shootCooldown = 3f; // Time between shots 
     [SerializeField] private GameObject bulletPrefab; // Prefab for the bullet to be instantiated
     [SerializeField] private Transform firingPoint;
     public bool isShooting = false;
@@ -16,7 +16,7 @@ public class BasicTurret : MonoBehaviour
         // If isshooting is true, shoot every shootCooldown seconds. 
         if (isShooting && !isInvoking)
         {
-            InvokeRepeating("Shoot", 1f, shootCooldown); // Start shooting immediately and repeat every shootCooldown seconds
+            InvokeRepeating("Shoot", shootCooldown, 1f); // Fix this eventuall: Shoots every shootCooldown, not by the '1f' parameter. bug that shootCooldowbn cant be more than like, 5 seconds.
             isInvoking = true;
         }
         else if (!isShooting && isInvoking)
