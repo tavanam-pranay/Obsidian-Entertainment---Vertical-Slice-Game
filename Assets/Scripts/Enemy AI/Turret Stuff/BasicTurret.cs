@@ -5,7 +5,7 @@ using UnityEngine;
 public class BasicTurret : MonoBehaviour
 {
     
-    [SerializeField] private float shootCooldown = 1000f; // Time between shots
+    [SerializeField] private float shootCooldown = 10f; // Time between shots
     [SerializeField] private GameObject bulletPrefab; // Prefab for the bullet to be instantiated
     [SerializeField] private Transform firingPoint;
     public bool isShooting = false;
@@ -16,7 +16,7 @@ public class BasicTurret : MonoBehaviour
         // If isshooting is true, shoot every shootCooldown seconds. 
         if (isShooting && !isInvoking)
         {
-            InvokeRepeating("Shoot", shootCooldown, shootCooldown); // Start shooting immediately and repeat every shootCooldown seconds
+            InvokeRepeating("Shoot", 1f, shootCooldown); // Start shooting immediately and repeat every shootCooldown seconds
             isInvoking = true;
         }
         else if (!isShooting && isInvoking)
@@ -48,7 +48,7 @@ public class BasicTurret : MonoBehaviour
             }
             else if (hit.collider != null)
             {
-                //Debug.Log("Turret detected an obstacle: " + hit.collider.name);
+                Debug.Log("Turret detected an obstacle: " + hit.collider.name);
                 Debug.DrawRay(transform.position, direction * 10, Color.red); //Draw the ray for debugging purposes
                 isShooting = false; //Stop shooting if the raycast hits an obstacle
             }
