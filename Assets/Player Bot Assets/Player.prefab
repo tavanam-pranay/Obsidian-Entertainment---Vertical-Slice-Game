@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45256912529767370}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.3311816, w: 0.94356704}
+  m_LocalRotation: {x: -0, y: -0, z: 0.33118254, w: 0.9435667}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -723,8 +723,8 @@ GameObject:
   - component: {fileID: 4088715234572005045}
   - component: {fileID: 2870891253331940348}
   - component: {fileID: 1661846335670371838}
-  - component: {fileID: 6918314513764731434}
   - component: {fileID: 3054767112431817478}
+  - component: {fileID: 6918314513764731434}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -820,6 +820,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3054767112431817478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804998000236800942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab16f58f235c77c4e8ecf0a343e0c9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  memoryChipAbilities: []
+  cooldownTimer: 0
+  freqMegahertz: 1
+  freqUpLimit: 250
+  freqLowLimit: 1
+  freqMhzText: {fileID: 0}
+  memChipInventory: {fileID: 0}
 --- !u!61 &6918314513764731434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -865,25 +884,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.12, y: 2.06}
   m_EdgeRadius: 0
---- !u!114 &3054767112431817478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5804998000236800942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab16f58f235c77c4e8ecf0a343e0c9d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  memoryChipAbilities: []
-  cooldownTimer: 0
-  freqMegahertz: 1
-  freqUpLimit: 250
-  freqLowLimit: 1
-  freqMhzText: {fileID: 0}
-  memChipInventory: {fileID: 0}
 --- !u!1 &6185067797506922988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,7 +1311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7571098274493203688}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.9376595, w: 0.34755525}
+  m_LocalRotation: {x: 0, y: 0, z: -0.93765897, w: 0.34755683}
   m_LocalPosition: {x: 0.31477425, y: -0.000000066477604, z: 0}
   m_LocalScale: {x: 0.99999964, y: 0.99999964, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1573,7 +1573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8763515028595987937}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.95767975, w: 0.28783613}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9576789, w: 0.2878387}
   m_LocalPosition: {x: 0.18033057, y: 0.5242162, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

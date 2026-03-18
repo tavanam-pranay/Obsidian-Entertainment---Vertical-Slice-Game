@@ -13,8 +13,8 @@ public class AbilityController : MonoBehaviour
     public float cooldownTimer;
 
     [Header("Ability - IFF Ping: Parameters")]
-    [Range(1, 250)] public int freqMegahertz;
-    public int freqUpLimit = 250;
+    [Range(1, 50)] public int freqMegahertz;
+    public int freqUpLimit = 50;
     public int freqLowLimit = 1;
     public TextMeshProUGUI freqMhzText;
 
@@ -56,7 +56,7 @@ public class AbilityController : MonoBehaviour
             {
                 if (freqMegahertz > freqLowLimit) freqMegahertz -= 1; // DEcrement current IFF frequency when scrolling down
             }
-            freqMhzText.text = freqMegahertz.ToString() + " MHz"; // Convert new value to string in Megahertz units
+            freqMhzText.text = freqMegahertz.ToString(); // Convert new value to string in Megahertz units
         }
         #endregion
 
