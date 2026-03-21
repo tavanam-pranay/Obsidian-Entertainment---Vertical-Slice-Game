@@ -7,57 +7,58 @@ using UnityEngine.UI;
 public class AttachmentBehavior : MonoBehaviour
 {
 
-    //Equipment Variables
-    [SerializeField] private GameObject projectilePrefab; // Prefab of the projectile to be fired
-    [SerializeField] private Transform firingPoint; // Point from which the projectile will be fired
+    [Header("General Attachment Variables")]
     
-    //TMP variable for editing text.
+    [SerializeField] private Transform firingPoint; // Point from which the projectile will be fired
     public TextMeshProUGUI currentAbility; // Text object to display current ability
-
-    //Magnet Variables
-    [SerializeField] private float magnetStrength = 5f; // Strength of the magnet pull
-    [SerializeField] private float heldRange = 1f; // Range at which an item is considered "held".
-    [SerializeField] private Collider2D beamCollider; // Collider used to detect magnetic objects
     public PlayerMovement playerRoot; // Used to tell if player is flipped, for beam direction
-
-    //Grabber Variables
-    [SerializeField] private float grabRange = 1f; // Range at which the grabber can grab objects
-    [SerializeField] private Vector2 grabOffset; // Offset from the firingpoint where grabbed objects will be held
-    public bool isGrabbing = false; // Whether the grabber is currently grabbing an object
-    private Rigidbody2D grabbedObject = null; // Reference to the currently grabbed object
-
-    // List to track objects currently inside the beam
-    private List<Rigidbody2D> objectsInBeam = new List<Rigidbody2D>();
-    private ContactFilter2D contactFilter; // Empty contact filter for OverlapCollider
-
+    
     // List of bools to recognize which arms are available to the player; add bools as more arms are added
     public bool hasGrabber;
     public bool hasCannon;
     public bool hasMagnet;
 
+    //Magnet Variables
+    [Header("Magnet Variables")]
+    [SerializeField] private float magnetStrength = 5f; // Strength of the magnet pull
+    [SerializeField] private float heldRange = 1f; // Range at which an item is considered "held".
+    [SerializeField] private Collider2D beamCollider; // Collider used to detect magnetic objects
+    [SerializeField] private GameObject magnetPanel; // HUD panel for when magnet is active. Parent to the lights.
+
+    //Grabber Variables
+    [Header("Grabber Variables")]
+    [SerializeField] private float grabRange = 1f; // Range at which the grabber can grab objects
+    [SerializeField] private Vector2 grabOffset; // Offset from the firingpoint where grabbed objects will be held
+    public bool isGrabbing = false; // Whether the grabber is currently grabbing an object
+    private Rigidbody2D grabbedObject = null; // Reference to the currently grabbed object
+
+    //Cannon Variables
+    [Header("Cannon Variables")]
+    [SerializeField] private GameObject projectilePrefab; // Prefab of the projectile to be fired
+
+
+    // List to track objects currently inside the beam
+    private List<Rigidbody2D> objectsInBeam = new List<Rigidbody2D>();
+    private ContactFilter2D contactFilter; // Empty contact filter for OverlapCollider
+
+
+
     void Start()
     {
-        if (beamCollider == null)
-        {
-            Debug.LogError("Beam collider is not assigned!");
-            enabled = false;
-            return;
-        }
-
         // Ensure the beam collider is a trigger
         beamCollider.isTrigger = true;
 
         contactFilter = new ContactFilter2D();// Initialize contact filter
         contactFilter.useTriggers = true; // We want to detect trigger colliders
-        contactFilter.useLayerMask = false; 
+        contactFilter.useLayerMask = false; //On any layer
     }
 
     void Update()
     {
         switch (playerRoot.armIndex)
         {
-            case 0:
-                // Basic grabber, no shooting
+            case 0: // Grabber
+                
                 if(hasGrabber) currentAbility.SetText("Grabber");
                 else currentAbility.SetText("(Arm Unavailable)");
 
@@ -71,7 +72,7 @@ public class AttachmentBehavior : MonoBehaviour
                 }
 
                 break;
-            case 1:
+            case 1: // Cannon
                 if (hasCannon) currentAbility.SetText("Cannon");
                 else currentAbility.SetText("(Arm Unavailable)");
 
@@ -80,7 +81,7 @@ public class AttachmentBehavior : MonoBehaviour
                     Shoot();
                 }
                 break;
-            case 2:
+            case 2: // Magnet
                 if (hasMagnet) currentAbility.SetText("Magnet");
                 else currentAbility.SetText("(Arm Unavailable)");
 
