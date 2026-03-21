@@ -12,6 +12,7 @@ public class AttachmentBehavior : MonoBehaviour
     [SerializeField] private Transform firingPoint; // Point from which the projectile will be fired
     public TextMeshProUGUI currentAbility; // Text object to display current ability
     public PlayerMovement playerRoot; // Used to tell if player is flipped, for beam direction
+    private GameObject armPanel; 
     
     // List of bools to recognize which arms are available to the player; add bools as more arms are added
     public bool hasGrabber;
@@ -31,10 +32,12 @@ public class AttachmentBehavior : MonoBehaviour
     [SerializeField] private Vector2 grabOffset; // Offset from the firingpoint where grabbed objects will be held
     public bool isGrabbing = false; // Whether the grabber is currently grabbing an object
     private Rigidbody2D grabbedObject = null; // Reference to the currently grabbed object
+    [SerializeField] private GameObject grabberPanel; 
 
     //Cannon Variables
     [Header("Cannon Variables")]
     [SerializeField] private GameObject projectilePrefab; // Prefab of the projectile to be fired
+    [SerializeField] private GameObject cannonPanel;
 
 
     // List to track objects currently inside the beam
@@ -59,7 +62,9 @@ public class AttachmentBehavior : MonoBehaviour
         {
             case 0: // Grabber
                 
-                if(hasGrabber) currentAbility.SetText("Grabber");
+                if(armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once
+
+                if (hasGrabber) currentAbility.SetText("Grabber");
                 else currentAbility.SetText("(Arm Unavailable)");
 
                 if (Input.GetMouseButtonDown(0) && !isGrabbing && hasGrabber)
@@ -70,9 +75,18 @@ public class AttachmentBehavior : MonoBehaviour
                 {
                     GrabberRelease();
                 }
+                
+                if (hasGrabber)
+                {
+                    armPanel = grabberPanel;
+                    armPanel.SetActive(true);
+                }
 
                 break;
+
             case 1: // Cannon
+
+                if (armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once
                 if (hasCannon) currentAbility.SetText("Cannon");
                 else currentAbility.SetText("(Arm Unavailable)");
 
@@ -80,8 +94,17 @@ public class AttachmentBehavior : MonoBehaviour
                 {
                     Shoot();
                 }
+
+                if (hasCannon)
+                {
+                    armPanel = cannonPanel;
+                    armPanel.SetActive(true);
+                }
                 break;
+
             case 2: // Magnet
+
+                if (armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once
                 if (hasMagnet) currentAbility.SetText("Magnet");
                 else currentAbility.SetText("(Arm Unavailable)");
 
@@ -89,7 +112,14 @@ public class AttachmentBehavior : MonoBehaviour
                 {
                     Magnet();
                 }
+
+                if (hasMagnet)
+                {
+                    armPanel = magnetPanel;
+                    armPanel.SetActive(true);
+                }
                 break;
+
             default:
                 Debug.LogWarning("Invalid arm index: " + playerRoot.armIndex);
                 break;

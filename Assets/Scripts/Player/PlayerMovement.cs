@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float flipThreshold = 0.1f; // TODO: Actually implement this. Threshold for determining when to flip the player based on movement direction
     public int armIndex = 0; //Index of the current arm, used for which effect. 0 (default) is the basic grabber.
     [SerializeField] private GameObject pauseScriptParent; // Reference to the pause menu script, used to check if the game is paused before allowing movement and flipping
-
+    [SerializeField] private GameObject debugModePrompt; // This gets displayed when debug is on.
+    private bool debugMode = false;
 
     [Range(0.01f, 0.1f)]
     public float flipTime = 0.02f; // Time it takes to complete the flip animation
@@ -58,7 +60,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) // If the player presses the space key, cycle through arms
         {
-            armIndex = (armIndex + 1) % 3; // Cycle through 0, 1, and 2
+            if (debugMode == true)
+            {
+                attachmentBehavior.hasCannon = true;
+                attachmentBehavior.hasGrabber = true;
+                attachmentBehavior.hasMagnet = true;
+                armIndex = (armIndex + 1) % 3; // Cycle through 0, 1, and 2
+            }
+            else
+            {
+                return;
+            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) // If the player presses the escape key, quit the game
@@ -67,6 +80,13 @@ public class PlayerMovement : MonoBehaviour
 
             pauseMenuScript.openPauseMenu();
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.BackQuote)) // Toggle debug mode on and off
+        {
+            debugMode = !debugMode; 
+            debugModePrompt.SetActive(debugMode);
+            Debug.Log("Debug Toggled");
         }
     }
 
