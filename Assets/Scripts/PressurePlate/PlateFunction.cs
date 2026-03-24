@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlateFunction : MonoBehaviour
 {
@@ -35,7 +36,8 @@ public class PlateFunction : MonoBehaviour
             //trigger the press with the first object on top
             if (objectsOnTop.Count == 1)
             {
-                plateAnim.enabled = true;
+                plateAnim.SetBool("on", true);
+                plateAnim.SetBool("off", false);
                 doorOpen();
                 Debug.Log("plate pressed!");
             }
@@ -54,9 +56,10 @@ public class PlateFunction : MonoBehaviour
             //only release plate if there's nothing on top
             if (objectsOnTop.Count == 0)
             {
+                plateAnim.SetBool("off", true);
+                plateAnim.SetBool("on", false);
                 doorClose();
                 Debug.Log("plate released!");
-                //animate plate release
             }
         }
     }
@@ -64,11 +67,13 @@ public class PlateFunction : MonoBehaviour
     public void doorOpen()
     {
         door.GetComponent<BoxCollider2D>().enabled = false;
-        door.GetComponent<Animator>().enabled = true;
+        door.GetComponent<Animator>().SetBool("open", true);
+        door.GetComponent<Animator>().SetBool("close", false);
     }
     public void doorClose()
     {
         door.GetComponent<BoxCollider2D>().enabled = true;
-        //animate door close
+        door.GetComponent<Animator>().SetBool("close", true);
+        door.GetComponent<Animator>().SetBool("open", false);
     }
 }
