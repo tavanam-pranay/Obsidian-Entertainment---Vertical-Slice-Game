@@ -25,6 +25,12 @@ public class AttachmentBehavior : MonoBehaviour
     [SerializeField] private float heldRange = 1f; // Range at which an item is considered "held".
     [SerializeField] private Collider2D beamCollider; // Collider used to detect magnetic objects
     [SerializeField] private GameObject magnetPanel; // HUD panel for when magnet is active. Parent to the lights.
+    
+    private GameObject magnetLights;
+    private GameObject defaultLight;
+    private GameObject lowLight;
+    private GameObject medLight;
+    private GameObject highLight;
 
     //Grabber Variables
     [Header("Grabber Variables")]
@@ -54,6 +60,16 @@ public class AttachmentBehavior : MonoBehaviour
         contactFilter = new ContactFilter2D();// Initialize contact filter
         contactFilter.useTriggers = true; // We want to detect trigger colliders
         contactFilter.useLayerMask = false; //On any layer
+
+
+        //This code is used to find the status lights for the magnet once, to avoid searching every frame.
+        lowLight = magnetPanel.transform.Find("MstatusLow").gameObject; // This is pretty fragile code and can break if lights are renamed. I used find() on the transform because that only searches for children.
+        medLight = magnetPanel.transform.Find("MstatusMid").gameObject;
+        highLight = magnetPanel.transform.Find("MstatusFull").gameObject;
+        
+        defaultLight = magnetPanel.transform.Find("MstatusReady").gameObject;
+        magnetLights = defaultLight;
+
     }
 
     void Update()
@@ -108,16 +124,27 @@ public class AttachmentBehavior : MonoBehaviour
                 if (hasMagnet) currentAbility.SetText("Magnet");
                 else currentAbility.SetText("(Arm Unavailable)");
 
-                if (Input.GetMouseButton(0) && hasMagnet)
-                {
-                    Magnet();
-                }
-
-                if (hasMagnet)
+                if (hasMagnet) // If has but not necessarily clicking.
                 {
                     armPanel = magnetPanel;
                     armPanel.SetActive(true);
+                    
                 }
+
+                if (Input.GetMouseButton(0) && hasMagnet)
+                {
+
+                    Magnet();
+                }
+                else // Reset to default light when magnet is not active
+                {
+                    defaultLight.SetActive(true);
+                    lowLight.SetActive(false);
+                    medLight.SetActive(false);
+                    highLight.SetActive(false);
+                    magnetLights = defaultLight;
+                }
+
                 break;
 
             default:
@@ -162,8 +189,40 @@ public class AttachmentBehavior : MonoBehaviour
 
                 if (metalRb != null)
                 {
-                    Vector2 directionToPlayer = (Vector2)firingPoint.position - metalRb.position;
+                    Vector2 directionToPlayer = (Vector2)firingPoint.position - metalRb.position; // Magnetic items igidbody must be set to dynamic.
                     metalRb.AddForce(directionToPlayer.normalized * magnetStrength, ForceMode2D.Impulse);
+                    
+                    float distance = Vector2.Distance(firingPoint.position, metalRb.position); //Get distance to object for status lights
+
+                    //Debug.Log("Distance to object: " + distance); //Was used for determining thresholds.
+
+                    if (distance < 9f && distance > 5f)
+                    {
+                        defaultLight.SetActive(false);
+                        lowLight.SetActive(true);
+                        medLight.SetActive(false);
+                        highLight.SetActive(false);
+                        magnetLights = lowLight;
+                    }
+                    else if (distance < 5f && distance > 2f)
+                    {
+                        defaultLight.SetActive(false);
+                        lowLight.SetActive(false);
+                        medLight.SetActive(true);
+                        highLight.SetActive(false);
+                        magnetLights = medLight;
+                    }
+                    else if (distance < 1.5f)
+                    {
+                        defaultLight.SetActive(false);
+                        lowLight.SetActive(false);
+                        medLight.SetActive(false);
+                        highLight.SetActive(true);
+                        magnetLights = highLight;
+                    }
+
+
+
                 }
                 else
                 {
