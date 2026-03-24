@@ -14,7 +14,7 @@ public class PlateFunction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -35,7 +35,8 @@ public class PlateFunction : MonoBehaviour
             //trigger the press with the first object on top
             if (objectsOnTop.Count == 1)
             {
-                plateAnim.enabled = true;
+                plateAnim.SetBool("On", true);
+                plateAnim.SetBool("Off", false);
                 doorOpen();
                 Debug.Log("plate pressed!");
             }
@@ -54,6 +55,8 @@ public class PlateFunction : MonoBehaviour
             //only release plate if there's nothing on top
             if (objectsOnTop.Count == 0)
             {
+                plateAnim.SetBool("On", false);
+                plateAnim.SetBool("Off", true);
                 doorClose();
                 Debug.Log("plate released!");
                 //animate plate release
@@ -64,11 +67,13 @@ public class PlateFunction : MonoBehaviour
     public void doorOpen()
     {
         door.GetComponent<BoxCollider2D>().enabled = false;
-        door.GetComponent<Animator>().enabled = true;
+        door.GetComponent<Animator>().SetBool("open", true);
+        door.GetComponent<Animator>().SetBool("close", false);
     }
     public void doorClose()
     {
         door.GetComponent<BoxCollider2D>().enabled = true;
-        //animate door close
+        door.GetComponent<Animator>().SetBool("open", false);
+        door.GetComponent<Animator>().SetBool("close", true);
     }
 }
