@@ -22,7 +22,7 @@ public class DoorOpen : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            doorAnimator.SetBool("open", true);
+            doorAnimator.enabled = true;
         }
     }
 }
