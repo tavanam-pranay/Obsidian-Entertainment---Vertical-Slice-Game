@@ -31,6 +31,7 @@ public class AttachmentBehavior : MonoBehaviour
     private GameObject lowLight;
     private GameObject medLight;
     private GameObject highLight;
+    private GameObject grabberLights;
 
     //Grabber Variables
     [Header("Grabber Variables")]
@@ -38,7 +39,7 @@ public class AttachmentBehavior : MonoBehaviour
     [SerializeField] private Vector2 grabOffset; // Offset from the firingpoint where grabbed objects will be held
     public bool isGrabbing = false; // Whether the grabber is currently grabbing an object
     private Rigidbody2D grabbedObject = null; // Reference to the currently grabbed object
-    [SerializeField] private GameObject grabberPanel; 
+    [SerializeField] private GameObject grabberPanel;
 
     //Cannon Variables
     [Header("Cannon Variables")]
@@ -62,12 +63,14 @@ public class AttachmentBehavior : MonoBehaviour
         contactFilter.useLayerMask = false; //On any layer
 
 
-        //This code is used to find the status lights for the magnet once, to avoid searching every frame.
+        //This code is used to find the status lights for the panels once, to avoid searching every frame.
         lowLight = magnetPanel.transform.Find("MstatusLow").gameObject; // This is pretty fragile code and can break if lights are renamed. I used find() on the transform because that only searches for children.
         medLight = magnetPanel.transform.Find("MstatusMid").gameObject;
         highLight = magnetPanel.transform.Find("MstatusFull").gameObject;
-        
         defaultLight = magnetPanel.transform.Find("MstatusReady").gameObject;
+
+        grabberLights = grabberPanel.transform.Find("GrabberLights").gameObject;
+
         magnetLights = defaultLight;
 
     }
@@ -90,6 +93,7 @@ public class AttachmentBehavior : MonoBehaviour
                 else if (Input.GetMouseButtonDown(0) && isGrabbing && hasGrabber)
                 {
                     GrabberRelease();
+                    grabberLights.SetActive(false);
                 }
                 
                 if (hasGrabber)
@@ -252,6 +256,9 @@ public class AttachmentBehavior : MonoBehaviour
                 if (grabbedObject != null) // If object is grabbable
                 {
                     Vector2 directionToPlayer = (Vector2)firingPoint.position - grabbedObject.position;
+
+
+                    grabberLights.SetActive(true);
 
                     if (directionToPlayer.magnitude <= grabRange)
                     {
