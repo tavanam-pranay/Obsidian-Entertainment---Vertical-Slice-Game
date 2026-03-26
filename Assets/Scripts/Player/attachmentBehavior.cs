@@ -262,6 +262,15 @@ public class AttachmentBehavior : MonoBehaviour
 
                     if (directionToPlayer.magnitude <= grabRange)
                     {
+                        //Calculate the grab offset based on the current position of the object and the firing point
+                        grabOffset = grabbedObject.position - (Vector2)firingPoint.position;
+
+                        //if (grabOffset.magnitude > grabRange)
+                        //{
+                            //grabOffset = grabOffset.normalized * grabRange; // Limit the grab offset to the grab range
+                        //}
+
+
                         // Move the object to the grab offset position
                         grabbedObject.MovePosition(firingPoint.position + (Vector3)grabOffset);
                         isGrabbing = true;
@@ -281,6 +290,7 @@ public class AttachmentBehavior : MonoBehaviour
         {
             grabbedObject = null; // Release the object
             isGrabbing = false;
+            grabOffset = Vector2.zero; // Reset grab offset
         }
     }
 
