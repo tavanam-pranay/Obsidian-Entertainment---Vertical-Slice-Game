@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseScriptParent; // Reference to the pause menu script, used to check if the game is paused before allowing movement and flipping
     [SerializeField] private GameObject debugModePrompt; // This gets displayed when debug is on.
     private bool debugMode = false;
+    public bool canMove = true;
 
     [Range(0.01f, 0.1f)]
     public float flipTime = 0.02f; // Time it takes to complete the flip animation
@@ -92,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        player.MovePosition(player.position + movement * moveSpeed * Time.deltaTime);
+        if (canMove) player.MovePosition(player.position + movement * moveSpeed * Time.deltaTime);
     }
 
 }
