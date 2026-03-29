@@ -218,7 +218,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 69f674df744092b42a43de06dda1004c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terminalCanvas: {fileID: 3975691841591701876}
   panels: []
-  playerScript: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1526312228784481717
 GameObject:
   m_ObjectHideFlags: 0
