@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class PlateFunction : MonoBehaviour
 {
     public Animator plateAnim;
-    public GameObject door;
+    public bool pressed;
     public List<Collider2D> objectsOnTop = new List<Collider2D>();
 
-    // attach player's magnet collider as parameter to disqualify magnet hitbox from activating plate
-    public Collider2D beamCollider;
+    // attach player to disqualify magnet hitbox from activating plate
+    public GameObject player;
+    Collider2D beamCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        beamCollider = player.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(2).GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class PlateFunction : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other != beamCollider)
         {
@@ -38,13 +40,13 @@ public class PlateFunction : MonoBehaviour
             {
                 plateAnim.SetBool("on", true);
                 plateAnim.SetBool("off", false);
-                doorOpen();
+                pressed = true;
                 Debug.Log("plate pressed!");
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void OnTriggerExit2D(Collider2D other)
     {
         if (other != beamCollider)
         {
@@ -58,22 +60,9 @@ public class PlateFunction : MonoBehaviour
             {
                 plateAnim.SetBool("off", true);
                 plateAnim.SetBool("on", false);
-                doorClose();
+                pressed = false;
                 Debug.Log("plate released!");
             }
         }
-    }
-
-    public void doorOpen()
-    {
-        door.GetComponent<BoxCollider2D>().enabled = false;
-        door.GetComponent<Animator>().SetBool("open", true);
-        door.GetComponent<Animator>().SetBool("close", false);
-    }
-    public void doorClose()
-    {
-        door.GetComponent<BoxCollider2D>().enabled = true;
-        door.GetComponent<Animator>().SetBool("close", true);
-        door.GetComponent<Animator>().SetBool("open", false);
     }
 }
