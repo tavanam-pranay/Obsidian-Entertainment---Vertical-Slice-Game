@@ -25,4 +25,18 @@ public class DoorOpen : MonoBehaviour
             doorAnimator.SetBool("open", true);
         }
     }
+
+    public void doorOpen()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<Animator>().SetBool("open", true);
+        GetComponent<Animator>().SetBool("close", false);
+    }
+
+    public void doorClose()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<Animator>().SetBool("close", true);
+        GetComponent<Animator>().SetBool("open", false);
+    }
 }
