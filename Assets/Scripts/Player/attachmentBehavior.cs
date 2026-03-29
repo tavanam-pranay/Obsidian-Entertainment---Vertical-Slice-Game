@@ -12,8 +12,9 @@ public class AttachmentBehavior : MonoBehaviour
     [SerializeField] private Transform firingPoint; // Point from which the projectile will be fired
     public TextMeshProUGUI currentAbility; // Text object to display current ability
     public PlayerMovement playerRoot; // Used to tell if player is flipped, for beam direction
-    private GameObject armPanel; 
-    
+    private GameObject armPanel;
+    public GameObject cameraRoot; // Used for screen shake on cannon fire.
+
     // List of bools to recognize which arms are available to the player; add bools as more arms are added
     public bool hasGrabber;
     public bool hasCannon;
@@ -176,6 +177,7 @@ public class AttachmentBehavior : MonoBehaviour
     private void Shoot()
     {
         Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+        cameraRoot.GetComponent<Shake>().gunShake(); // Call the gun shake effect
     }
 
     private void Magnet()
@@ -187,7 +189,7 @@ public class AttachmentBehavior : MonoBehaviour
 
         foreach (Collider2D col in collidersInBeam)
         {
-            if (col.CompareTag("magnetic")){ // If object is magnetic
+            if (col.GetComponent<MagneticTag>() != null){ // If object is magnetic
 
                 Rigidbody2D metalRb = col.GetComponent<Rigidbody2D>();
 
@@ -262,17 +264,10 @@ public class AttachmentBehavior : MonoBehaviour
 
                     if (directionToPlayer.magnitude <= grabRange)
                     {
-                        //Calculate the grab offset based on the current position of the object and the firing point
-                        grabOffset = grabbedObject.position - (Vector2)firingPoint.position;
-
-                        //if (grabOffset.magnitude > grabRange)
-                        //{
-                            //grabOffset = grabOffset.normalized * grabRange; // Limit the grab offset to the grab range
-                        //}
-
-
-                        // Move the object to the grab offset position
-                        grabbedObject.MovePosition(firingPoint.position + (Vector3)grabOffset);
+                        
+                        grabOffset = grabbedObject.position - (Vector2)firingPoint.position; //Calculates the grab offset
+                        
+                        grabbedObject.MovePosition(firingPoint.position + (Vector3)grabOffset); // Moves the object to the grab offset position
                         isGrabbing = true;
                     }
                 }
