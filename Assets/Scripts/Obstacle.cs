@@ -8,7 +8,6 @@ public class Obstacle : MonoBehaviour
 
     [SerializeField] private int health = 3;
     public bool isDestructible = true;
-    public bool magnetic = false;
 
     private float opacity = 1.0f;
 
@@ -28,14 +27,7 @@ public class Obstacle : MonoBehaviour
     }
     private void Start()
     {
-        if (magnetic)
-        {
-            gameObject.tag = "magnetic";
-        }
-        else {
 
-            gameObject.tag = "obstacle"; // Defaults to obstacle if not magnetic
-        }
     }
     // Update is called once per frame
     void Update()
