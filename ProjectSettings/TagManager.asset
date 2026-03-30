@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - obstacle
   - magnetic
+  - Keycard
   layers:
   - Default
   - TransparentFX
