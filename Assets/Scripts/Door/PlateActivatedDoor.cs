@@ -7,6 +7,7 @@ public class PlateActivatedDoor : DoorOpen
 {
     public List<GameObject> plates;
     public bool canOpen;
+    public bool passwordOpen;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class PlateActivatedDoor : DoorOpen
     void Update()
     {
         // this 'if' clause runs ONLY while the PasswordDoor script hasn't opened the door yet
-        if (!canOpen)
+        if (!passwordOpen)
         {
             // check to see if all pressure plates connected to this door are ON
             canOpen = true;
