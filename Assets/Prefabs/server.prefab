@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3984589480143001572}
   - component: {fileID: 4222971113743719873}
   - component: {fileID: 6678182504460129884}
-  - component: {fileID: 1289239119068650445}
+  - component: {fileID: -2665674528100764232}
   m_Layer: 0
   m_Name: server
   m_TagString: magnetic
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1289239119068650445
+--- !u!114 &-2665674528100764232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,6 +168,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3668876212847928332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d550c91e6cd942b41a0a72ca34ba209d, type: 3}
+  m_Script: {fileID: 11500000, guid: 92aced7348d04ed43bf5a8d203af5901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

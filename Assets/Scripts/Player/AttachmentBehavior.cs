@@ -190,7 +190,7 @@ public class AttachmentBehavior : MonoBehaviour
         foreach (Collider2D col in collidersInBeam)
         {
             if (col.GetComponent<MagneticTag>() != null){ // If object is magnetic
-
+                
                 Rigidbody2D metalRb = col.GetComponent<Rigidbody2D>();
 
                 if (metalRb != null)
@@ -283,6 +283,10 @@ public class AttachmentBehavior : MonoBehaviour
     {
         if (grabbedObject != null)
         {
+            // re-enable collision
+            Collider2D grabbedCollider = grabbedObject.GetComponent<Collider2D>();
+            Physics2D.IgnoreCollision(grabbedCollider, playerRoot.GetComponent<Collider2D>(), false);//Exclude the grabbed object from the player's collider to prevent physics issues
+
             grabbedObject = null; // Release the object
             isGrabbing = false;
             grabOffset = Vector2.zero; // Reset grab offset
