@@ -20,7 +20,7 @@ public class PasswordDoor : DoorOpen
         if (terminal.GetComponent<PasswordTerminal>().getPassword() == "1234")                          // (change this pls)
         {
             // stop checking for pressure plate logic anymore since we got the password
-            GetComponent<PlateActivatedDoor>().canOpen = true;
+            GetComponent<PlateActivatedDoor>().passwordOpen = true;
             doorOpen();
         }
     }

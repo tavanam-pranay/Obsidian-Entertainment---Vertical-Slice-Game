@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 6830303578039032599}
   - component: {fileID: 1829215204109737466}
   - component: {fileID: 7750435370770975270}
+  - component: {fileID: 8129080590374081918}
   m_Layer: 0
   m_Name: transition_stairs
   m_TagString: Untagged
@@ -403,7 +404,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0053710938, y: 0}
@@ -419,6 +420,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9864044, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8129080590374081918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534191423179101462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4c3fec72f9c9a4680bb5ed76696f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  otherStairs: {fileID: 0}
 --- !u!1 &8908875509697682239
 GameObject:
   m_ObjectHideFlags: 0
