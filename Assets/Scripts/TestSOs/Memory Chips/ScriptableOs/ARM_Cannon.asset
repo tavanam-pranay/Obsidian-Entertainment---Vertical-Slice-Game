@@ -17,6 +17,7 @@ MonoBehaviour:
     for its ostrich-like mount."'
   armDesc: 
   armIcon: {fileID: 0}
+  activeButonSprite: {fileID: 21300000, guid: 93b8816adcaf3ba42be2f4949815a211, type: 3}
   utilityChipReq: 1
   mobilityChipReq: 0
   combatChipReq: 1

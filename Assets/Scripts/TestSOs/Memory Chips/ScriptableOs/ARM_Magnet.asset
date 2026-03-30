@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: ARM_Magnet
   m_EditorClassIdentifier: 
   armName: Mark.II Magnetizer
-  armFlavText: A Mech-Claw mount for a powerful magnet, typically used for demolitions
+  armFlavText: '"The junior engineers have nicknamed it the "North Pole", to the
+    chagrin of some senior members."'
+  armDesc: A Mech-Claw mount for a powerful magnet, typically used for demolitions
     or iron sieving.
-  armDesc: '"The junior engineers have nicknamed it the "North Pole", to the chagrin
-    of some senior members."'
   armIcon: {fileID: 0}
+  activeButonSprite: {fileID: 21300000, guid: 16c2dc3e0f3bdaa4694133d5468210a2, type: 3}
   utilityChipReq: 2
   mobilityChipReq: 0
   combatChipReq: 0

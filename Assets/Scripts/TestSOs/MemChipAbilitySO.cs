@@ -8,6 +8,7 @@ public class MemChipAbilitySO : ScriptableObject
     [TextArea(3, 10)] public string abilityFlavText;
     [TextArea(3, 10)] public string abilityDesc;
     public Sprite abilityIcon;
+    public Sprite activeButonSprite;
     public int utilityChipReq;
     public int mobilityChipReq;
     public int combatChipReq;

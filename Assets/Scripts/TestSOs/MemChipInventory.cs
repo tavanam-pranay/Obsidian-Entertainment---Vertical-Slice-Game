@@ -13,8 +13,11 @@ public class MemChipInventory : MonoBehaviour
     public List<MemoryChipSO> memChipList;
     public MemChipAbilitySO selectedViewAbility;
     public ArmSO selectedArm;
+    public Image selectedButton;
     [HideInInspector] public AbilityController abilityController; // Connection established in the AbilityController itself
     public AttachmentBehavior attachmentBehavior;
+
+    public List<Button> buttonList;
 
     [Header("Memory Chip Counts")]
     private int utilChipCount;
@@ -74,9 +77,17 @@ public class MemChipInventory : MonoBehaviour
         combatChipCountText.text = combatChipCount.ToString();
     }
 
+
+    public void selectButtonPending(Image buttonIcon)
+    {
+        selectedButton = buttonIcon;
+    }
+
+
     public void ViewAbility(MemChipAbilitySO ability)
     {
         selectedViewAbility = ability;
+        //selectedButton = buttonIcon;
         selectedArm = null;
 
         abilityNameText.text = ability.abilityName.ToString();
@@ -88,6 +99,11 @@ public class MemChipInventory : MonoBehaviour
         mobilChipCost.text = ability.mobilityChipReq.ToString();
         combatChipCost.text = ability.combatChipReq.ToString();
 
+        foreach (Button button in buttonList)
+        {
+            button.interactable = false;
+        }
+
         //Check if the player already has the ability
         bool abilityObtained = false;
         for(int i = 0; i < abilityController.memoryChipAbilities.Count; i++)
@@ -98,6 +114,8 @@ public class MemChipInventory : MonoBehaviour
                 break;
             }
         }
+
+        
 
         //Check if all requirements to unlock an arm or ability are met (ability has not been unlocked, and all chip requirements are met)
         if (!abilityObtained && utilChipCount >= ability.utilityChipReq && mobilChipCount >= ability.mobilityChipReq && combatChipCount >= ability.combatChipReq)
@@ -116,6 +134,7 @@ public class MemChipInventory : MonoBehaviour
     {
         selectedArm = arm;
         selectedViewAbility = null;
+        //selectedButton = buttonIcon;
 
         abilityNameText.text = arm.armName.ToString();
         abilityIconText.sprite = arm.armIcon;
@@ -125,6 +144,11 @@ public class MemChipInventory : MonoBehaviour
         utilChipCost.text = arm.utilityChipReq.ToString();
         mobilChipCost.text = arm.mobilityChipReq.ToString();
         combatChipCost.text = arm.combatChipReq.ToString();
+
+        foreach (Button button in buttonList)
+        {
+            button.interactable = false;
+        }
 
         //Check if the player already has the arm
         bool armObtained = false;
@@ -165,6 +189,7 @@ public class MemChipInventory : MonoBehaviour
 
             // Adds the ability to the current list of active abilities
             abilityController.addAbility(selectedViewAbility);
+            selectedButton.sprite = selectedViewAbility.activeButonSprite;
             selectedViewAbility = null;
         }
 
@@ -176,8 +201,12 @@ public class MemChipInventory : MonoBehaviour
 
             // Adds the ability to the current list of active abilities
             attachmentBehavior.addArm(selectedArm);
+            selectedButton.sprite = selectedArm.activeButonSprite;
             selectedArm = null;
         }
+
+        
+
         unlockButton.interactable = false;
         OnChange();
     }
@@ -193,5 +222,11 @@ public class MemChipInventory : MonoBehaviour
     {
         selectedArm = null;
         selectedViewAbility = null;
+        selectedButton = null;
+
+        foreach (Button button in buttonList)
+        {
+            button.interactable = true;
+        }
     }
 }
