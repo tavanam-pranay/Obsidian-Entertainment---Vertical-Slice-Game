@@ -7,15 +7,21 @@ public class mainmenu : MonoBehaviour
 {
     [SerializeField] private int levelIndexToLoad;
 
+    public AudioManager audioManager;
+
     public void startFirstLevel()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(levelIndexToLoad);
+        audioManager.PlayClick();
+        Invoke("LoadLevel", audioManager.clickSound.length);
+    }
+
+    void LoadLevel()
+    {
+        SceneManager.LoadScene(levelIndexToLoad);
     }
 
     public void quitGame()
     {
         Application.Quit();
     }
-
-
 }
