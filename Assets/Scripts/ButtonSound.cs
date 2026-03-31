@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class AudioManager : MonoBehaviour
 {
     public AudioSource audioSource;
@@ -13,12 +11,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip hoverSound;
     public AudioClip cancelSound;
     public AudioClip upgradeSound;
+    public AudioClip terminalCancelSound;
+
     void Start()
     {
         audioSource.clip = bgm;
         audioSource.loop = true;
         audioSource.Play();
-
     }
 
     public void PlayClick()
@@ -30,21 +29,29 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(hoverSound);
     }
+
     public void PauseBGM()
     {
         audioSource.Pause();
     }
+
     public void PlayCancel()
     {
         audioSource.PlayOneShot(cancelSound);
     }
+
     public void PlayUpgrade()
     {
         audioSource.PlayOneShot(upgradeSound);
     }
+
     public void ResumeBGM()
     {
         audioSource.UnPause();
     }
-}
 
+    public void PlayTerminalCancel()
+    {
+        audioSource.PlayOneShot(terminalCancelSound);
+    }
+}

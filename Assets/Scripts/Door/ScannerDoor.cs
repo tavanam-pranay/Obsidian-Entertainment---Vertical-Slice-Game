@@ -7,12 +7,21 @@ public class lockedDoorScanner : DoorOpen
 {
     public GameObject scanner;
 
-    // Update is called once per frame
+    private bool isOpen = false;
+
     void Update()
     {
-        if (scanner.GetComponent<Scanner>().open == true)
+        bool shouldOpen = scanner.GetComponent<Scanner>().open;
+
+        if (shouldOpen && !isOpen)
         {
             doorOpen();
+            isOpen = true;
+        }
+        else if (!shouldOpen && isOpen)
+        {
+            doorClose();
+            isOpen = false;
         }
     }
 }
