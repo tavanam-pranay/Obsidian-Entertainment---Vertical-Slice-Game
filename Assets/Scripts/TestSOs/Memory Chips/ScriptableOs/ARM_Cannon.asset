@@ -15,8 +15,8 @@ MonoBehaviour:
   armName: Kanonen-Strauss
   armFlavText: '"A field mod of a mech-arm fitted with a 25 mm chain gun, nicknamed
     for its ostrich-like mount."'
-  armDesc: 
-  armIcon: {fileID: 0}
+  armDesc: Allows Holger to fire upon blockade and hostiles alike.
+  armIcon: {fileID: -304124699, guid: c99f415227359334fae6993e2730390b, type: 3}
   activeButonSprite: {fileID: 21300000, guid: 93b8816adcaf3ba42be2f4949815a211, type: 3}
   utilityChipReq: 1
   mobilityChipReq: 0

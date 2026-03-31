@@ -15,9 +15,8 @@ MonoBehaviour:
   armName: Mark.II Magnetizer
   armFlavText: '"The junior engineers have nicknamed it the "North Pole", to the
     chagrin of some senior members."'
-  armDesc: A Mech-Claw mount for a powerful magnet, typically used for demolitions
-    or iron sieving.
-  armIcon: {fileID: 0}
+  armDesc: Allows Holger to pull objects receptive to magnetic fields.
+  armIcon: {fileID: -500178581, guid: 38207ab8c4153ab4ab2e1e13589f77d3, type: 3}
   activeButonSprite: {fileID: 21300000, guid: 16c2dc3e0f3bdaa4694133d5468210a2, type: 3}
   utilityChipReq: 2
   mobilityChipReq: 0

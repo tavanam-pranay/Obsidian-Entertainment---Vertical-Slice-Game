@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ARM_Grabber
   m_EditorClassIdentifier: 
   armName: H-Class Mech-Claw
-  armFlavText: The standard large mechanical claw equipped on all H-class G.E.R.s.
+  armFlavText: '"The standard large mechanical claw equipped on all H-class G.E.R.s."'
   armDesc: Allows Holger to interact with and lift objects around it.
-  armIcon: {fileID: 0}
+  armIcon: {fileID: -112202228, guid: 25a361ffbaf7e764ebc6bf41df0b62e5, type: 3}
   activeButonSprite: {fileID: 21300000, guid: 6a5680b0b8f114f498b274bc782ad74d, type: 3}
   utilityChipReq: 1
   mobilityChipReq: 0

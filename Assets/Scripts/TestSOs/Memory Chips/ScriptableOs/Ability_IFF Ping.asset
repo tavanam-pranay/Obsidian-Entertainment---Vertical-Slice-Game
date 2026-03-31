@@ -17,7 +17,7 @@ MonoBehaviour:
     across all mechas from 2nd Generation and onwards.\u201D"
   abilityDesc: Allows Holger to send out a 'ping' towards other mechas. Its frequency
     can be adjusted.
-  abilityIcon: {fileID: 0}
+  abilityIcon: {fileID: 503119028, guid: aeee3bd52167e6548b6afc1e1163f85f, type: 3}
   activeButonSprite: {fileID: 21300000, guid: 6601ff8d57d4bb6479e0cfeb7a5dadf9, type: 3}
   utilityChipReq: 2
   mobilityChipReq: 0
