@@ -14,7 +14,7 @@ public class Shake : MonoBehaviour
 
     public void bigShake()
     {
-        StartCoroutine(ShakeCamera(1f, 0.9f));
+        StartCoroutine(ShakeCamera(1f, 0.5f));
     }
 
     public IEnumerator ShakeCamera(float duration, float power) //This is a coroutine

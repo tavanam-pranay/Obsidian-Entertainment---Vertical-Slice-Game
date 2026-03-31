@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AttachmentBehavior : MonoBehaviour
@@ -10,10 +11,13 @@ public class AttachmentBehavior : MonoBehaviour
     [Header("General Attachment Variables")]
     
     [SerializeField] private Transform firingPoint; // Point from which the projectile will be fired
+    public int health = 2;
+    [SerializeField] private GameObject painPanel;
     public TextMeshProUGUI currentAbility; // Text object to display current ability
     public PlayerMovement playerRoot; // Used to tell if player is flipped, for beam direction
     private GameObject armPanel;
     public GameObject cameraRoot; // Used for screen shake on cannon fire.
+
 
     // List of bools to recognize which arms are available to the player; add bools as more arms are added
     public bool hasGrabber;
@@ -73,6 +77,7 @@ public class AttachmentBehavior : MonoBehaviour
         grabberLights = grabberPanel.transform.Find("GrabberLights").gameObject;
 
         magnetLights = defaultLight;
+        beamCollider.GetComponent<SpriteRenderer>().enabled = false; 
 
     }
 
@@ -86,6 +91,7 @@ public class AttachmentBehavior : MonoBehaviour
 
                 if (hasGrabber) currentAbility.SetText("Grabber");
                 else currentAbility.SetText("(Arm Unavailable)");
+                beamCollider.GetComponent<SpriteRenderer>().enabled = false; // hide magnet beam collider
 
                 if (Input.GetMouseButtonDown(0) && !isGrabbing && hasGrabber)
                 {
@@ -110,6 +116,7 @@ public class AttachmentBehavior : MonoBehaviour
                 if (armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once
                 if (hasCannon) currentAbility.SetText("Cannon");
                 else currentAbility.SetText("(Arm Unavailable)");
+                beamCollider.GetComponent<SpriteRenderer>().enabled = false; // hide magnet beam collider
 
                 if (Input.GetMouseButtonDown(0) && hasCannon)
                 {
@@ -128,6 +135,8 @@ public class AttachmentBehavior : MonoBehaviour
                 if (armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once
                 if (hasMagnet) currentAbility.SetText("Magnet");
                 else currentAbility.SetText("(Arm Unavailable)");
+
+                beamCollider.GetComponent<SpriteRenderer>().enabled = true; // Activate magnet beam collider sprite.
 
                 if (hasMagnet) // If has but not necessarily clicking.
                 {
@@ -308,6 +317,25 @@ public class AttachmentBehavior : MonoBehaviour
 
         }
     }
+
+    public void TakeDamage(int d)
+    {
+        if (health - d <= 0)
+        {
+            health = 0; //Temporary scene reset stand-in. Should load death screen./////////////////////////
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Do we have to unload this scene first? idk ////////////////////////////
+        }
+        else
+        {
+            health -= d;
+            cameraRoot.GetComponent<Shake>().bigShake(); // Call the gun shake effect
+
+            painPanel.SetActive(true);
+
+        }
+    }
+
+
 }
 
 
