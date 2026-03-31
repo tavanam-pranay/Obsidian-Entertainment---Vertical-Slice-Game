@@ -26,19 +26,19 @@ public class TerminalInteract : MonoBehaviour
                 terminalCanvas.SetActive(true);
                 if (panels.Count != 0) ShowPanel(0);
 
-                GetComponent<TerminalAudio>().StartTerminalSound();
-
                 player.GetComponent<PlayerMovement>().enabled = false;
                 player.GetComponent<AttachmentBehavior>().enabled = false;
+
+                GetComponent<TerminalAudio>().StartTerminalSound();
             }
             else
             {
                 terminalCanvas.SetActive(false);
-
-                GetComponent<TerminalAudio>().StopTerminalSound();
-
+                
                 player.GetComponent<PlayerMovement>().enabled = true;
                 player.GetComponent<AttachmentBehavior>().enabled = true;
+                
+                GetComponent<TerminalAudio>().StopTerminalSound();
             }
         }
     }
