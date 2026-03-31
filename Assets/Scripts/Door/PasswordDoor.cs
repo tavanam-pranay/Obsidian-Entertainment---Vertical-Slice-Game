@@ -6,11 +6,22 @@ using UnityEngine;
 public class PasswordDoor : DoorOpen
 {
     public GameObject terminal;
+    public string password = "1234";
+    public string exitPassword = "fin";
 
     void Update()
     {
+        // special case for final exit door
+        if (CompareTag("Finish"))
+        {
+            if (terminal.GetComponent<PasswordTerminal>().getPassword() == exitPassword)
+            {
+                Debug.Log("final door opened");
+                doorOpen();
+            }
+        }
         // check for CORRECT password
-        if (terminal.GetComponent<PasswordTerminal>().getPassword() == "1234")                          // (change this pls)
+        else if (terminal.GetComponent<PasswordTerminal>().getPassword() == password)
         {
             doorOpen();
         }
