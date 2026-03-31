@@ -6,16 +6,18 @@ public class DoorOpen : MonoBehaviour
 {
     public Animator doorAnimator;
 
-    // Start is called before the first frame update
+    public AudioSource audioSource;
+    public AudioClip openSound;
+    public AudioClip closeSound;
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -23,6 +25,7 @@ public class DoorOpen : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             doorAnimator.SetBool("open", true);
+            audioSource.PlayOneShot(openSound);
         }
     }
 
@@ -31,6 +34,8 @@ public class DoorOpen : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Animator>().SetBool("open", true);
         GetComponent<Animator>().SetBool("close", false);
+
+        audioSource.PlayOneShot(openSound);
     }
 
     public void doorClose()
@@ -38,5 +43,7 @@ public class DoorOpen : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<Animator>().SetBool("close", true);
         GetComponent<Animator>().SetBool("open", false);
+
+        audioSource.PlayOneShot(closeSound);
     }
 }

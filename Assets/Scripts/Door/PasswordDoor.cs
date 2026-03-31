@@ -9,20 +9,36 @@ public class PasswordDoor : DoorOpen
     public string password = "1234";
     public string exitPassword = "fin";
 
+    private bool isOpen = false;
+
     void Update()
     {
-        // special case for final exit door
+        bool shouldOpen = false;
+
         if (CompareTag("Finish"))
         {
             if (terminal.GetComponent<PasswordTerminal>().getPassword() == exitPassword)
             {
-                doorOpen();
+                shouldOpen = true;
             }
         }
-        // check for CORRECT password
-        else if (terminal.GetComponent<PasswordTerminal>().getPassword() == password)
+        else
+        {
+            if (terminal.GetComponent<PasswordTerminal>().getPassword() == password)
+            {
+                shouldOpen = true;
+            }
+        }
+
+        if (shouldOpen && !isOpen)
         {
             doorOpen();
+            isOpen = true;
+        }
+        else if (!shouldOpen && isOpen)
+        {
+            doorClose();
+            isOpen = false;
         }
     }
 }
