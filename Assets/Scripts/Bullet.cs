@@ -28,6 +28,8 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) // If the bullet hits the player, destroy the bullet and damage the player.
         {
             Debug.Log("Bullet hit the player!");
+            // run TakeDamage() function in PlayerHealth script
+            other.gameObject.GetComponent<AttachmentBehavior>().TakeDamage(1); 
         }
         Destroy(gameObject);
 
