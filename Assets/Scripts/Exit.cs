@@ -18,6 +18,7 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("yeah buddy we're out");
         if (collision.CompareTag("Player"))
         {
             Application.Quit();

@@ -16,7 +16,6 @@ public class PasswordDoor : DoorOpen
         {
             if (terminal.GetComponent<PasswordTerminal>().getPassword() == exitPassword)
             {
-                Debug.Log("final door opened");
                 doorOpen();
             }
         }
