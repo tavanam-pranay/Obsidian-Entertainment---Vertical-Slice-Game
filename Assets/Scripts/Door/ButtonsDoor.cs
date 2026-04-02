@@ -19,10 +19,16 @@ public class ButtonsDoor : DoorOpen
                 count++;
         }
 
-        if (count == 1 && !buttons[3].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
-        if (count == 2 && !buttons[0].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
-        if (count == 3 && !buttons[2].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
-        if (count == 4) doorOpen();
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            if (count == buttons.Count) doorOpen();
+            if (count == i+1 && !buttons[i].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
+        }
+
+        //if (count == 1 && !buttons[3].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
+        //if (count == 2 && !buttons[0].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
+        //if (count == 3 && !buttons[2].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
+        //if (count == 4) doorOpen();
 
     }
 

@@ -218,7 +218,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010879517, y: -0.010427475}
+  m_Offset: {x: -0.0015716553, y: 0.029167175}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -229,7 +229,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.89486694, y: 0.59724045}
+  m_Size: {x: 0.658844, y: 0.44662476}
   m_EdgeRadius: 0
 --- !u!114 &1220116965581496831
 MonoBehaviour:
@@ -243,5 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14497f194dd27cc45866106a90c1558c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  beamCollider: {fileID: 0}
   plateAnim: {fileID: 4409231052484479148}
   inRange: 0
+  clicked: 0
