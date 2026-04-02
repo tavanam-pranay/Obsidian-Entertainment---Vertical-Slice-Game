@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ButtonsDoor : DoorOpen
@@ -9,7 +10,7 @@ public class ButtonsDoor : DoorOpen
 
 
     // Update is called once per frame
-    void Update()
+    async Task Update()
     {
         int count = 0;
 
@@ -22,13 +23,12 @@ public class ButtonsDoor : DoorOpen
         for (int i = 0; i < buttons.Count; i++)
         {
             if (count == buttons.Count) doorOpen();
-            if (count == i+1 && !buttons[i].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
+            if (count == i + 1 && !buttons[i].GetComponent<WallButtonFunction>().clicked)
+            {
+                await Task.Delay(100);
+                buttonsRelease();
+            }
         }
-
-        //if (count == 1 && !buttons[3].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
-        //if (count == 2 && !buttons[0].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
-        //if (count == 3 && !buttons[2].GetComponent<WallButtonFunction>().clicked) buttonsRelease();
-        //if (count == 4) doorOpen();
 
     }
 
