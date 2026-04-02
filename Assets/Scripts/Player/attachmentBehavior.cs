@@ -37,6 +37,7 @@ public class AttachmentBehavior : MonoBehaviour
     private GameObject medLight;
     private GameObject highLight;
     private GameObject grabberLights;
+    private GameObject cannonLights;
 
     //Grabber Variables
     [Header("Grabber Variables")]
@@ -50,6 +51,9 @@ public class AttachmentBehavior : MonoBehaviour
     [Header("Cannon Variables")]
     [SerializeField] private GameObject projectilePrefab; // Prefab of the projectile to be fired
     [SerializeField] private GameObject cannonPanel;
+    [SerializeField] private float cannonCooldown = 1f; // Cooldown time between shots
+    private float lastShotTime = 0f; // Timestamp for when the last shot was fired, used to calculate time before next shot.
+  
 
 
     // List to track objects currently inside the beam
@@ -75,6 +79,8 @@ public class AttachmentBehavior : MonoBehaviour
         defaultLight = magnetPanel.transform.Find("MstatusReady").gameObject;
 
         grabberLights = grabberPanel.transform.Find("GrabberLights").gameObject;
+
+        cannonLights = cannonPanel.transform.Find("CannonLights").gameObject;
 
         magnetLights = defaultLight;
         beamCollider.GetComponent<SpriteRenderer>().enabled = false; 
@@ -121,12 +127,49 @@ public class AttachmentBehavior : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && hasCannon)
                 {
                     Shoot();
+                    Debug.Log(cannonCooldown - (Time.time - lastShotTime));
                 }
 
                 if (hasCannon)
                 {
                     armPanel = cannonPanel;
                     armPanel.SetActive(true);
+
+                    float timeUntilNextShot = Mathf.Max(0, cannonCooldown - (Time.time - lastShotTime)); // Calculate time until next shot, using Max to prevent negative numbers
+                    float fillAmount = 1 - (timeUntilNextShot / cannonCooldown); // Calculate fill amount based on cooldown
+
+
+                    switch (fillAmount) // Uses Max to prevent negative numbers. Fill values aren't perfectly linear so I use a switchcase to activate individual lights.
+                    {
+                        case (<= 0.1f):
+                            cannonLights.GetComponent<Image>().fillAmount = 0;
+                            break;
+                        case (> 0.1f and <= 0.2f):
+                            cannonLights.GetComponent<Image>().fillAmount = 0.1f;
+                            break;
+                        case (> 0.2f and <= 0.3f):
+                            cannonLights.GetComponent<Image>().fillAmount = 0.225f;
+                            break;
+                        case (> 0.3f and <= 0.4f):
+                            cannonLights.GetComponent<Image>().fillAmount = 0.35f;
+                            break;
+                        case (> 0.4f and <= 0.5f):
+                            cannonLights.GetComponent<Image>().fillAmount = 0.475f;
+                            break;
+                        case (> 0.5f and <= 0.6f):
+                            cannonLights.GetComponent<Image>().fillAmount = 0.610f;
+                            break;
+                        case (> 0.6f and <= 0.95f):
+                            cannonLights.GetComponent<Image>().fillAmount = 0.735f;
+                            break;
+                        case (>= 0.95f):
+                            cannonLights.GetComponent<Image>().fillAmount = 1f;
+                            break;
+                        default:
+                            cannonLights.GetComponent<Image>().fillAmount = 1f;
+                            break;
+
+                    }
                 }
                 break;
 
@@ -185,8 +228,16 @@ public class AttachmentBehavior : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
-        cameraRoot.GetComponent<Shake>().gunShake(); // Call the gun shake effect
+        if (Time.time - lastShotTime >= cannonCooldown) // Checks if enough time has passed since the last shot
+        {
+            lastShotTime = Time.time; // Updates the last shot timestamp. 
+            Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            cameraRoot.GetComponent<Shake>().gunShake();
+        }
+        else
+        {
+            Debug.Log("Cannon is on cooldown. Play unloaded click sound here");
+        }
     }
 
     private void Magnet()
