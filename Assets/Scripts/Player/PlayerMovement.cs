@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
             debugMode = !debugMode; 
             debugModePrompt.SetActive(debugMode);
             Debug.Log("Debug Toggled");
+            moveSpeed = debugMode ? 10f : 3.5f; // speed up player in debug mode
         }
     }
 
