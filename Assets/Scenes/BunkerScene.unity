@@ -8061,8 +8061,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  playerRoot: {fileID: 0}
-  shoulder: {fileID: 0}
+  playerRoot: {fileID: 1482912324}
+  shoulder: {fileID: 6090479584513075610}
   maxDistanceFromShoulder: 1.5
 --- !u!1 &487095188
 GameObject:
@@ -10251,6 +10251,10 @@ PrefabInstance:
     - target: {fileID: 2539582788262670372, guid: f119c91c896d9ca4abca4e13ce335657, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652373081713288780, guid: f119c91c896d9ca4abca4e13ce335657, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6130189444405306835, guid: f119c91c896d9ca4abca4e13ce335657, type: 3}
       propertyPath: m_Name
@@ -12803,7 +12807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampening: 0.3
   offset: {x: 0, y: 0, z: -10}
-  target: {fileID: 1885207876}
+  target: {fileID: 1482912323}
 --- !u!114 &1247935882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24034,7 +24038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3.5
-  player: {fileID: 2089512119}
+  player: {fileID: 1482912328}
   canFlip: 1
   isFlipped: 0
   flipThreshold: 0.1
@@ -24059,7 +24063,7 @@ MonoBehaviour:
   health: 2
   painPanel: {fileID: 1845456407}
   currentAbility: {fileID: 2052938417}
-  playerRoot: {fileID: 2089512118}
+  playerRoot: {fileID: 1482912324}
   cameraRoot: {fileID: 1247935876}
   hasGrabber: 0
   hasCannon: 0
@@ -27378,18 +27382,13 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879627428}
   m_CullTransparentMesh: 1
---- !u!4 &1885207876 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7827396357608270920, guid: e3356915b77abb949be00f196129c0a5, type: 3}
-  m_PrefabInstance: {fileID: 6876929764659108964}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1885207880 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2870891253331940348, guid: e3356915b77abb949be00f196129c0a5, type: 3}
   m_PrefabInstance: {fileID: 6876929764659108964}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089512117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 039da6978db84684d9e3c5c4cf054c2b, type: 3}
   m_Name: 
@@ -29008,22 +29007,6 @@ PrefabInstance:
 --- !u!1 &2089512117 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5804998000236800942, guid: e3356915b77abb949be00f196129c0a5, type: 3}
-  m_PrefabInstance: {fileID: 6876929764659108964}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2089512118 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4088715234572005045, guid: e3356915b77abb949be00f196129c0a5, type: 3}
-  m_PrefabInstance: {fileID: 6876929764659108964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089512117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47227f8089c7714f9f6fe81029d5638, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!50 &2089512119 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 1661846335670371838, guid: e3356915b77abb949be00f196129c0a5, type: 3}
   m_PrefabInstance: {fileID: 6876929764659108964}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2093001064
@@ -59921,7 +59904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2870891253331940348, guid: e3356915b77abb949be00f196129c0a5, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2870891253331940348, guid: e3356915b77abb949be00f196129c0a5, type: 3}
       propertyPath: painPanel
@@ -59981,7 +59964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4088715234572005045, guid: e3356915b77abb949be00f196129c0a5, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4088715234572005045, guid: e3356915b77abb949be00f196129c0a5, type: 3}
       propertyPath: moveSpeed
@@ -60009,7 +59992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5804998000236800942, guid: e3356915b77abb949be00f196129c0a5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6050789025203096290, guid: e3356915b77abb949be00f196129c0a5, type: 3}
       propertyPath: m_LocalRotation.w
