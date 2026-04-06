@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isFlipped = false;
     public float flipThreshold = 0.1f; // TODO: Actually implement this. Threshold for determining when to flip the player based on movement direction
     public int armIndex = 0; //Index of the current arm, used for which effect. 0 (default) is the basic grabber.
+    [SerializeField] private Animator animator; //Animator for walking & idle
     [SerializeField] private GameObject pauseScriptParent; // Reference to the pause menu script, used to check if the game is paused before allowing movement and flipping
     [SerializeField] private GameObject debugModePrompt; // This gets displayed when debug is on.
     private bool debugMode = false;
@@ -37,6 +38,15 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if (movement != Vector2.zero) //If there is movement input
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
 
         if (canFlip)
         {
