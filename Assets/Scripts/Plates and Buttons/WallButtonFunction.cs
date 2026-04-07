@@ -12,7 +12,12 @@ public class WallButtonFunction : MonoBehaviour
 
     void Start()
     {
-        beamCollider = player.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(2).GetComponent<Collider2D>();
+
+        if (beamCollider == null)
+        {
+            Debug.Log("Beam collider not assigned");
+            beamCollider = player.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(2).GetComponent<Collider2D>(); //Pranay's original code, unsure if works with new player prefab
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D hand)

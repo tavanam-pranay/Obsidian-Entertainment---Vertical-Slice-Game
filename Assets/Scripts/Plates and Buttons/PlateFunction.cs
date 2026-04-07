@@ -11,11 +11,14 @@ public class PlateFunction : MonoBehaviour
     public List<Collider2D> objectsOnTop = new List<Collider2D>();
 
     public GameObject player;
-    Collider2D beamCollider;
+    public Collider2D beamCollider;
 
     void Start()
     {
-        beamCollider = player.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(2).GetComponent<Collider2D>();
+        if (beamCollider == null)
+        {
+            beamCollider = player.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(2).GetComponent<Collider2D>();
+        }
     }
 
     void Update()
