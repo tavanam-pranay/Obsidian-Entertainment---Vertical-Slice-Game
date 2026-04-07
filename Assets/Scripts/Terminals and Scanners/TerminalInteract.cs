@@ -12,11 +12,6 @@ public class TerminalInteract : MonoBehaviour
     private bool isPlayerInRange = false;
     public GameObject player;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
@@ -28,6 +23,7 @@ public class TerminalInteract : MonoBehaviour
 
                 player.GetComponent<PlayerMovement>().enabled = false;
                 player.GetComponent<AttachmentBehavior>().enabled = false;
+                player.GetComponentInChildren<followMouse>().enabled = false;
 
                 GetComponent<TerminalAudio>().StartTerminalSound();
             }
@@ -37,7 +33,8 @@ public class TerminalInteract : MonoBehaviour
                 
                 player.GetComponent<PlayerMovement>().enabled = true;
                 player.GetComponent<AttachmentBehavior>().enabled = true;
-                
+                player.GetComponentInChildren<followMouse>().enabled = true;
+
                 GetComponent<TerminalAudio>().StopTerminalSound();
             }
         }
@@ -51,7 +48,7 @@ public class TerminalInteract : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform.root.CompareTag("Player"))
         {
             isPlayerInRange = true;
         }
@@ -59,7 +56,7 @@ public class TerminalInteract : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform.root.CompareTag("Player"))
         {
             isPlayerInRange = false;
 
