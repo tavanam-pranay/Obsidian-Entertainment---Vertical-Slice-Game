@@ -10,25 +10,9 @@ public class PlateFunction : MonoBehaviour
     public bool pressed;
     public List<Collider2D> objectsOnTop = new List<Collider2D>();
 
-    public GameObject player;
-    public Collider2D beamCollider;
-
-    void Start()
-    {
-        if (beamCollider == null)
-        {
-            beamCollider = player.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(2).GetComponent<Collider2D>();
-        }
-    }
-
-    void Update()
-    {
-
-    }
-
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other != beamCollider && !other.CompareTag("Keycard"))
+        if (!other.CompareTag("Keycard"))
         {
             if (!objectsOnTop.Contains(other))
             {
@@ -50,7 +34,7 @@ public class PlateFunction : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other != beamCollider && !other.CompareTag("Keycard"))
+        if (!other.CompareTag("Keycard"))
         {
             if (objectsOnTop.Contains(other))
             {
