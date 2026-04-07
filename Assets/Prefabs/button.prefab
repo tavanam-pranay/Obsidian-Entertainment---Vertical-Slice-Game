@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9096427277137507837}
   - component: {fileID: 4409231052484479148}
   - component: {fileID: 7052039378755336744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: buttonPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 8391253638457663592}
   - component: {fileID: 8220450471797682181}
   - component: {fileID: 1220116965581496831}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 4
@@ -243,8 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14497f194dd27cc45866106a90c1558c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  beamCollider: {fileID: 0}
   plateAnim: {fileID: 4409231052484479148}
   inRange: 0
   clicked: 0
