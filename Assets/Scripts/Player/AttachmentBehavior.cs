@@ -28,7 +28,7 @@ public class AttachmentBehavior : MonoBehaviour
     [Header("Magnet Variables")]
     [SerializeField] private float magnetStrength = 5f; // Strength of the magnet pull
     [SerializeField] private float heldRange = 1f; // Range at which an item is considered "held".
-    [SerializeField] private Collider2D beamCollider; // Collider used to detect magnetic objects
+    [SerializeField] private GameObject beamCollider; // Collider used to detect magnetic objects
     [SerializeField] private GameObject magnetPanel; // HUD panel for when magnet is active. Parent to the lights.
     
     private GameObject magnetLights;
@@ -65,7 +65,7 @@ public class AttachmentBehavior : MonoBehaviour
     void Start()
     {
         // Ensure the beam collider is a trigger
-        beamCollider.isTrigger = true;
+        beamCollider.GetComponent<Collider2D>().isTrigger = true;
 
         contactFilter = new ContactFilter2D();// Initialize contact filter
         contactFilter.useTriggers = true; // We want to detect trigger colliders
@@ -92,7 +92,8 @@ public class AttachmentBehavior : MonoBehaviour
         switch (playerRoot.armIndex)
         {
             case 0: // Grabber
-                
+                beamCollider.GetComponent<SpriteRenderer>().enabled = false; // Disable beam collider if not in use
+
                 if(armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once
 
                 if (hasGrabber) currentAbility.SetText("Grabber");
@@ -118,6 +119,7 @@ public class AttachmentBehavior : MonoBehaviour
                 break;
 
             case 1: // Cannon
+                beamCollider.GetComponent<SpriteRenderer>().enabled = false; // Disable beam collider if not in use
 
                 if (armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once
                 if (hasCannon) currentAbility.SetText("Cannon");
@@ -175,6 +177,7 @@ public class AttachmentBehavior : MonoBehaviour
 
             case 2: // Magnet
 
+                beamCollider.GetComponent<SpriteRenderer>().enabled = true; // Disable beam collider if not in use
                 if (armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once
                 if (hasMagnet) currentAbility.SetText("Magnet");
                 else currentAbility.SetText("(Arm Unavailable)");
@@ -245,7 +248,7 @@ public class AttachmentBehavior : MonoBehaviour
         
         objectsInBeam.RemoveAll(rb => rb == null);// Clean up any destroyed objects from the list
         List<Collider2D> collidersInBeam = new List<Collider2D>(); //Make a new list to store the colliders currently in the beam
-        beamCollider.OverlapCollider(contactFilter, collidersInBeam); // Get all colliders currently in the beam
+        beamCollider.GetComponent<Collider2D>().OverlapCollider(contactFilter, collidersInBeam); // Get all colliders currently in the beam
 
         foreach (Collider2D col in collidersInBeam)
         {
@@ -301,7 +304,7 @@ public class AttachmentBehavior : MonoBehaviour
     private void GrabberGrab()
     {
         List<Collider2D> collidersInBeam = new List<Collider2D>(); //Make a new list to store the colliders currently in the beam
-        beamCollider.OverlapCollider(contactFilter, collidersInBeam); // Get all colliders currently in the beam
+        beamCollider.GetComponent<Collider2D>().OverlapCollider(contactFilter, collidersInBeam); // Get all colliders currently in the beam
 
         foreach (Collider2D col in collidersInBeam)
         {
