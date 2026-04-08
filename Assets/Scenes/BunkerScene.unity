@@ -101043,9 +101043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2df9bb351e040241969c8ea7f8a8468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memChipList:
-  - {fileID: 11400000, guid: c794723932cce5647bb4bf930bb8808c, type: 2}
-  - {fileID: 11400000, guid: c794723932cce5647bb4bf930bb8808c, type: 2}
+  memChipList: []
   selectedViewAbility: {fileID: 0}
   selectedArm: {fileID: 0}
   selectedButton: {fileID: 0}
