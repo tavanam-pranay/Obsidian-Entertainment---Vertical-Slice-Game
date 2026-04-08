@@ -190,28 +190,27 @@ public class MemChipInventory : MonoBehaviour
             mobilChipCount -= selectedViewAbility.mobilityChipReq;
             combatChipCount -= selectedViewAbility.combatChipReq;
 
-            int localUtilCount = selectedViewAbility.utilityChipReq;
-            int localMobilityCount = selectedViewAbility.mobilityChipReq;
-            int localCombatCount = selectedViewAbility.combatChipReq;
 
-            for (int i = 0; i < memChipList.Count; i++)
+            int localUtilCurrent = 0;
+            int localMobilityCurrent = 0;
+            int localCombatCurrent = 0;
+
+            for (int i = memChipList.Count - 1; i >= 0; i--)
             {
-                if(memChipList[i].chipType == ChipType.Utility && localUtilCount > 0)
+                if (memChipList[i].chipType == ChipType.Utility && localUtilCurrent < selectedArm.utilityChipReq)
                 {
                     memChipList.Remove(memChipList[i]);
-                    localUtilCount--;
+                    localUtilCurrent++;
                 }
-
-                if (memChipList[i].chipType == ChipType.Mobility && localMobilityCount > 0)
+                else if (memChipList[i].chipType == ChipType.Mobility && localMobilityCurrent < selectedArm.mobilityChipReq)
                 {
                     memChipList.Remove(memChipList[i]);
-                    localMobilityCount--;
+                    localMobilityCurrent++;
                 }
-
-                if (memChipList[i].chipType == ChipType.Combat && localCombatCount > 0)
+                else if (memChipList[i].chipType == ChipType.Combat && localCombatCurrent < selectedArm.combatChipReq)
                 {
                     memChipList.Remove(memChipList[i]);
-                    localCombatCount--;
+                    localCombatCurrent++;
                 }
             }
 
