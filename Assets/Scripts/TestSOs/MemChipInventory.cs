@@ -190,6 +190,31 @@ public class MemChipInventory : MonoBehaviour
             mobilChipCount -= selectedViewAbility.mobilityChipReq;
             combatChipCount -= selectedViewAbility.combatChipReq;
 
+            int localUtilCount = selectedViewAbility.utilityChipReq;
+            int localMobilityCount = selectedViewAbility.mobilityChipReq;
+            int localCombatCount = selectedViewAbility.combatChipReq;
+
+            for (int i = 0; i < memChipList.Count; i++)
+            {
+                if(memChipList[i].chipType == ChipType.Utility && localUtilCount > 0)
+                {
+                    memChipList.Remove(memChipList[i]);
+                    localUtilCount--;
+                }
+
+                if (memChipList[i].chipType == ChipType.Mobility && localMobilityCount > 0)
+                {
+                    memChipList.Remove(memChipList[i]);
+                    localMobilityCount--;
+                }
+
+                if (memChipList[i].chipType == ChipType.Combat && localCombatCount > 0)
+                {
+                    memChipList.Remove(memChipList[i]);
+                    localCombatCount--;
+                }
+            }
+
             // Adds the ability to the current list of active abilities
             abilityController.addAbility(selectedViewAbility);
             selectedButton.sprite = selectedViewAbility.activeButonSprite;
@@ -201,6 +226,29 @@ public class MemChipInventory : MonoBehaviour
             utilChipCount -= selectedArm.utilityChipReq;
             mobilChipCount -= selectedArm.mobilityChipReq;
             combatChipCount -= selectedArm.combatChipReq;
+
+            int localUtilCurrent = 0;
+            int localMobilityCurrent = 0;
+            int localCombatCurrent = 0;
+
+            for (int i = memChipList.Count - 1; i >= 0; i--)
+            {
+                if (memChipList[i].chipType == ChipType.Utility && localUtilCurrent < selectedArm.utilityChipReq)
+                {
+                    memChipList.Remove(memChipList[i]);
+                    localUtilCurrent++;
+                }
+                else if (memChipList[i].chipType == ChipType.Mobility && localMobilityCurrent < selectedArm.mobilityChipReq)
+                {
+                    memChipList.Remove(memChipList[i]);
+                    localMobilityCurrent++;
+                }
+                else if (memChipList[i].chipType == ChipType.Combat && localCombatCurrent < selectedArm.combatChipReq)
+                {
+                    memChipList.Remove(memChipList[i]);
+                    localCombatCurrent++;
+                }
+            }
 
             // Adds the ability to the current list of active abilities
             attachmentBehavior.addArm(selectedArm);
