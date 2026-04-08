@@ -103,19 +103,23 @@ public class AttachmentBehavior : MonoBehaviour
     {
         switch (playerRoot.armIndex)
         {
+            //Magnet Arm
             case 0: // Grabber
 
-                //Turn on the Grabber's visuals to make them visible
-                Grabber_Bicep.SetActive(true);
-                Grabber_Forearm.SetActive(true);
-                Grabber_Hand.SetActive(true);
+                if (hasGrabber)
+                {
+                    //Turn on the Grabber's visuals to make them visible
+                    Grabber_Bicep.SetActive(true);
+                    Grabber_Forearm.SetActive(true);
+                    Grabber_Hand.SetActive(true);
 
-                //Turn off the other Arms to hide them
-                Magnet_Bicep.SetActive(false);
-                Magnet_Forearm.SetActive(false);
-                Magnet_Hand.SetActive(false);
-                Cannon_Bicep.SetActive(false);
-                Cannon_Forearm.SetActive(false);
+                    //Turn off the other Arms to hide them
+                    Magnet_Bicep.SetActive(false);
+                    Magnet_Forearm.SetActive(false);
+                    Magnet_Hand.SetActive(false);
+                    Cannon_Bicep.SetActive(false);
+                    Cannon_Forearm.SetActive(false);
+                }
 
                 beamCollider.GetComponent<SpriteRenderer>().enabled = false; // Disable beam collider if not in use
 
@@ -143,19 +147,23 @@ public class AttachmentBehavior : MonoBehaviour
 
                 break;
 
+            //Cannon Arm
             case 1: // Cannon
 
-                //Turn on the Cannon's visuals to make them visible
-                Cannon_Bicep.SetActive(true);
-                Cannon_Forearm.SetActive(true);
+                if (hasCannon)
+                {
+                    //Turn on the Cannon's visuals to make them visible
+                    Cannon_Bicep.SetActive(true);
+                    Cannon_Forearm.SetActive(true);
 
-                //Turn off the other Arms to hide them
-                Grabber_Bicep.SetActive(false);
-                Grabber_Forearm.SetActive(false);
-                Grabber_Hand.SetActive(false);
-                Magnet_Bicep.SetActive(false);
-                Magnet_Forearm.SetActive(false);
-                Magnet_Hand.SetActive(false);
+                    //Turn off the other Arms to hide them
+                    Grabber_Bicep.SetActive(false);
+                    Grabber_Forearm.SetActive(false);
+                    Grabber_Hand.SetActive(false);
+                    Magnet_Bicep.SetActive(false);
+                    Magnet_Forearm.SetActive(false);
+                    Magnet_Hand.SetActive(false);
+                }
 
                 beamCollider.GetComponent<SpriteRenderer>().enabled = false; // Disable beam collider if not in use
 
@@ -213,20 +221,24 @@ public class AttachmentBehavior : MonoBehaviour
                 }
                 break;
 
+            //Magnet Arm
             case 2: // Magnet
 
-                //Turn on the Magnet's visuals to make them visible
-                Magnet_Bicep.SetActive(true);
-                Magnet_Forearm.SetActive(true);
-                Magnet_Hand.SetActive(true);
+                if (hasMagnet)
+                {
+                    //Turn on the Magnet's visuals to make them visible
+                    Magnet_Bicep.SetActive(true);
+                    Magnet_Forearm.SetActive(true);
+                    Magnet_Hand.SetActive(true);
 
 
-                //Turn off the other Arms to hide them
-                Grabber_Bicep.SetActive(false);
-                Grabber_Forearm.SetActive(false);
-                Grabber_Hand.SetActive(false);
-                Cannon_Bicep.SetActive(false);
-                Cannon_Forearm.SetActive(false);
+                    //Turn off the other Arms to hide them
+                    Grabber_Bicep.SetActive(false);
+                    Grabber_Forearm.SetActive(false);
+                    Grabber_Hand.SetActive(false);
+                    Cannon_Bicep.SetActive(false);
+                    Cannon_Forearm.SetActive(false);
+                }
 
                 beamCollider.GetComponent<SpriteRenderer>().enabled = true; // Disable beam collider if not in use
                 if (armPanel) armPanel.SetActive(false); // Disable the current arm panel if there is one, to prevent multiple panels from being active at once

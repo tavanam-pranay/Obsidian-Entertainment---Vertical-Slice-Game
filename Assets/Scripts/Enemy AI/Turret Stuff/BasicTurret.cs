@@ -8,6 +8,7 @@ public class BasicTurret : MonoBehaviour
     [SerializeField] [Range(1, 7)] private float shootCooldown = 3f; // Time between shots 
     [SerializeField] private GameObject bulletPrefab; // Prefab for the bullet to be instantiated
     [SerializeField] private Transform firingPoint;
+    [SerializeField] private Transform gunObject;
     public bool isShooting = false;
     private bool isInvoking = false; // Track whether a next shot is already scheduled
 
@@ -43,7 +44,7 @@ public class BasicTurret : MonoBehaviour
                 //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Mathf.Atan2.html 
 
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; //Atan2 calculates the angle to rotate the turret towards the player
-                transform.rotation = Quaternion.Euler(0, 0, angle - 90f); //Rotate the firing point towards the player
+                gunObject.rotation = Quaternion.Euler(0, 0, angle - 90f); //Rotate the firing point towards the player
 
             }
             else if (hit.collider != null)

@@ -18,6 +18,7 @@ public class MemChipInventory : MonoBehaviour
     public AttachmentBehavior attachmentBehavior;
 
     public List<Button> buttonList;
+    public Button exitButton;
 
     [Header("Memory Chip Counts")]
     private int utilChipCount;
@@ -103,6 +104,7 @@ public class MemChipInventory : MonoBehaviour
         {
             button.interactable = false;
         }
+        exitButton.interactable = false;
 
         //Check if the player already has the ability
         bool abilityObtained = false;
@@ -149,6 +151,7 @@ public class MemChipInventory : MonoBehaviour
         {
             button.interactable = false;
         }
+        exitButton.interactable = false;
 
         //Check if the player already has the arm
         bool armObtained = false;
@@ -228,5 +231,6 @@ public class MemChipInventory : MonoBehaviour
         {
             button.interactable = true;
         }
+        exitButton.interactable = true;
     }
 }

@@ -71,18 +71,34 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) // If the player presses the space key, cycle through arms
         {
-            if (debugMode == true)
+            //HOLY AIRBALL BENROY IS BAD AT CODE
+            if (attachmentBehavior.hasGrabber) //This is for the purposes of the tutorial
             {
-                attachmentBehavior.hasCannon = true;
-                attachmentBehavior.hasGrabber = true;
-                attachmentBehavior.hasMagnet = true;
-                armIndex = (armIndex + 1) % 3; // Cycle through 0, 1, and 2
+                if (debugMode == true)
+                {
+                    //attachmentBehavior.hasCannon = true; //ArmIndex 1
+                    //attachmentBehavior.hasGrabber = true; // ArmIndex 0
+                    //attachmentBehavior.hasMagnet = true; //ArmIndex 2
+                    armIndex = (armIndex + 1) % 3; // Cycle through 0, 1, and 2
+                    Debug.Log("cycled with debug!");
+                }
+                else
+                {
+                    armIndex += 1;
+
+                    if (armIndex == 0 && !attachmentBehavior.hasGrabber) armIndex += 1;
+                    if (armIndex == 1 && !attachmentBehavior.hasCannon) armIndex += 1;
+                    if (armIndex == 2 && !attachmentBehavior.hasMagnet) armIndex += 1;
+
+                    if (armIndex > 2)
+                    {
+                        armIndex = 0;
+                        Debug.Log("Restarted cycle!");
+                    }
+                    //return;
+                    Debug.Log("Cycled normally!");
+                }
             }
-            else
-            {
-                return;
-            }
-            
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) // If the player presses the escape key, quit the game
@@ -95,6 +111,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.BackQuote)) // Toggle debug mode on and off
         {
+            attachmentBehavior.hasCannon = true; //ArmIndex 1
+            attachmentBehavior.hasGrabber = true; // ArmIndex 0
+            attachmentBehavior.hasMagnet = true; //ArmIndex 2
+
             debugMode = !debugMode; 
             debugModePrompt.SetActive(debugMode);
             Debug.Log("Debug Toggled");
