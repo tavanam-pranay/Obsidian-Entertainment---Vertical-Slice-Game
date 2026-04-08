@@ -17,6 +17,7 @@ public class AttachmentBehavior : MonoBehaviour
     public PlayerMovement playerRoot; // Used to tell if player is flipped, for beam direction
     private GameObject armPanel;
     public GameObject cameraRoot; // Used for screen shake on cannon fire.
+    public CursorManager cursorManager; // Used to change cursor based on arm.
 
 
     // List of bools to recognize which arms are available to the player; add bools as more arms are added
@@ -103,11 +104,12 @@ public class AttachmentBehavior : MonoBehaviour
     {
         switch (playerRoot.armIndex)
         {
-            //Magnet Arm
+            
             case 0: // Grabber
 
                 if (hasGrabber)
                 {
+                    cursorManager.SetCircleCursor();
                     //Turn on the Grabber's visuals to make them visible
                     Grabber_Bicep.SetActive(true);
                     Grabber_Forearm.SetActive(true);
@@ -155,6 +157,7 @@ public class AttachmentBehavior : MonoBehaviour
                     //Turn on the Cannon's visuals to make them visible
                     Cannon_Bicep.SetActive(true);
                     Cannon_Forearm.SetActive(true);
+                    cursorManager.SetAimCursor();
 
                     //Turn off the other Arms to hide them
                     Grabber_Bicep.SetActive(false);
@@ -226,6 +229,7 @@ public class AttachmentBehavior : MonoBehaviour
 
                 if (hasMagnet)
                 {
+                    cursorManager.SetSquareCursor();
                     //Turn on the Magnet's visuals to make them visible
                     Magnet_Bicep.SetActive(true);
                     Magnet_Forearm.SetActive(true);
