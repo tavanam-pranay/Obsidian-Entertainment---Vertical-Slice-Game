@@ -18,9 +18,11 @@ MonoBehaviour:
   abilityDesc: Allows Holger to fold itself into a box, becoming 'invisible' at the
     cost of its movement.
   abilityIcon: {fileID: 0}
+  activeButonSprite: {fileID: 0}
   utilityChipReq: 1
   mobilityChipReq: 1
   combatChipReq: 0
   abilityKeybind: 99
   cooldownTime: 2
+  abilityID: 1
   baseMoveSpeed: 5

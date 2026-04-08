@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183446230730739120}
   - component: {fileID: 269543106469964188}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: TurretBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +168,98 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2337887695568094320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2613759890935631342}
+  - component: {fileID: 2233837346106087551}
+  - component: {fileID: 1761546609559966630}
+  m_Layer: 2
+  m_Name: PingCollider
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2613759890935631342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337887695568094320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8050257851690253492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2233837346106087551
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337887695568094320}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.004062414, y: -0.5565467}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.5030828, y: 2.1130934}
+  m_EdgeRadius: 0
+--- !u!114 &1761546609559966630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337887695568094320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 625f7e33e61e2764dbd9dc0c27f7a76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyFreq: 35
+  currentState: 1
 --- !u!1 &2537795451690345672
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8050257851690253492}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: testTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,6 +323,7 @@ Transform:
   - {fileID: 2366648756723679130}
   - {fileID: 183446230730739120}
   - {fileID: 8544060316620528479}
+  - {fileID: 2613759890935631342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6125743727456830672
@@ -243,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2366648756723679130}
   - component: {fileID: 2205745566954784726}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: TurretTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84646a3aab12a6d4fb8f4e8bfff205de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frequencyHandler: {fileID: 1761546609559966630}
   shootCooldown: 1.69
   bulletPrefab: {fileID: 9119957126732739927, guid: f2c865890c235b2479e169eddfc2d4a5, type: 3}
   firingPoint: {fileID: 7285954569685016826}

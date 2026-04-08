@@ -35,7 +35,7 @@ public class EnemyDetection_Radar : EnemyDetection
                 if (hitDetect.collider.CompareTag("Player"))
                 {
                     Debug.Log("Player detected!");
-                    parentEnemy.currentState = EnemyStates.Alert;
+                    //parentEnemy.currentState = EnemyStates.Alert;
                     lastPlayerPos = hitDetect.collider.gameObject.transform.position;
 
                     RaycastHit2D hitAttack = Physics2D.Raycast(transform.position, transform.up, hostileRange);

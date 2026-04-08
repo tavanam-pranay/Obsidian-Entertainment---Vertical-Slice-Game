@@ -17,6 +17,7 @@ public class AbilityController : MonoBehaviour
     public int freqUpLimit = 50;
     public int freqLowLimit = 1;
     public TextMeshProUGUI freqMhzText;
+    public GameObject iffPanel;
 
     [SerializeField] protected MemChipInventory memChipInventory;
 
@@ -68,6 +69,11 @@ public class AbilityController : MonoBehaviour
     {
         memoryChipAbilities.Add(ability);
         abilitiesToExecute += ability.ExecuteAbility;
+        switch (ability.abilityID)
+        {
+            case 0:
+                iffPanel.SetActive(true); break;
+        }
     }
 
     
