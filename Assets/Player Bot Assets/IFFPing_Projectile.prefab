@@ -164,4 +164,4 @@ MonoBehaviour:
   speed: 30
   lifetime: 2.95
   pingFrequency: 1
-  neutralizeTime: 3
+  neutralizeTime: 5

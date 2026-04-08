@@ -14,6 +14,7 @@ public class MemChipAbilitySO : ScriptableObject
     public int combatChipReq;
     public KeyCode abilityKeybind;
     public float cooldownTime;
+    public int abilityID;
 
     public virtual void ExecuteAbility(GameObject player, AbilityController controller){ }
 }
