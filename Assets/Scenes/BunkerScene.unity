@@ -36946,14 +36946,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "--Log #329--\n\nTo: Sanders\r\nFrom: *insert name*\r\nWe\u2019ve been
+  m_text: "--Log #329--\n\nTo: Sanders\r Petofi\nFrom: Mactan Graf\nWe\u2019ve been
     developing a pretty powerful upgrade for Holger. They say it can even disable
     our security turret\u2019s systems. Warren didn\u2019t want anyone to know until
     it\u2019s finished so he\u2019s saved it on his personal terminal down the hall
     from here.\n\nHis button security system is odd but I wouldn\u2019t be surprised
     to find his pass sequence to be the last digits of his phone number, 4-1-3-2.\r\n\nP.S.
     Until it\u2019s ready, nobody\u2019s getting in or out of here without a huge
-    server between them and the turret lol.\r\n"
+    server between them and the turret lol.\r\n\n- Mactan Graf\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c24f17300d0da0b408039f6011526bb4, type: 2}
   m_sharedMaterial: {fileID: -8491780096639211765, guid: c24f17300d0da0b408039f6011526bb4, type: 2}
@@ -43433,11 +43433,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "-- Log #211 --\n\n*insert name* left his keycard in the main hall again.
-    It\u2019s by the server in the corner. Someone should tell him he\u2019s gonna
-    need it to get back inside y\u2019know.\r\n\r\nP.S. I know the room across the
-    hallway stores security info and exit codes, but does the security have to be
-    that tight?"
+  m_text: "-- Log #211 --\n\nBauer left his keycard in the main hall again. It\u2019s
+    by the server in the corner. Someone should tell him he\u2019s gonna need it
+    to get back inside y\u2019know.\r\n\r\nP.S. I know the room across the hallway
+    stores security info and exit codes, but does the security have to be that tight?\n\n-
+    Elisa Voren"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c24f17300d0da0b408039f6011526bb4, type: 2}
   m_sharedMaterial: {fileID: -8491780096639211765, guid: c24f17300d0da0b408039f6011526bb4, type: 2}
@@ -51716,10 +51716,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "--Log #133--\n*insert name*\u2019s been paging me for days asking for
-    access to Holger\u2019s storage space so he can work on some upgrades. Couldn\u2019t
+  m_text: "--Log #133--\nKaller\u2019s been paging me for days asking for access
+    to Holger\u2019s storage space so he can work on some upgrades. Couldn\u2019t
     catch him at the office this week, but if you see this *insert name*, the password\u2019s
-    \"1234\". Now leave me alone."
+    \"1234\". Now leave me alone.\n\n- Elisa Voren"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c24f17300d0da0b408039f6011526bb4, type: 2}
   m_sharedMaterial: {fileID: -8491780096639211765, guid: c24f17300d0da0b408039f6011526bb4, type: 2}
