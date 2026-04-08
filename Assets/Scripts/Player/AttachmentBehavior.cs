@@ -285,7 +285,8 @@ public class AttachmentBehavior : MonoBehaviour
         if (Time.time - lastShotTime >= cannonCooldown) // Checks if enough time has passed since the last shot
         {
             lastShotTime = Time.time; // Updates the last shot timestamp. 
-            Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            GameObject bullet = Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), playerRoot.GetComponent<Collider2D>()); //don't kill the player!!
             cameraRoot.GetComponent<Shake>().gunShake();
         }
         else
